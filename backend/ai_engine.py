@@ -1,4 +1,5 @@
 import os
+
 import numpy as np
 from paddleocr import PaddleOCR
 from sentence_transformers import SentenceTransformer, util

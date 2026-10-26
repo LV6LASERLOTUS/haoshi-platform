@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Form, UploadFile, File
 from typing import Optional
+
+from fastapi import FastAPI, File, Form, UploadFile
 
 app = FastAPI(
     title="好事大平台 API",
