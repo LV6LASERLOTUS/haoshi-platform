@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI, File, Form, UploadFile
 
 app = FastAPI(
@@ -19,7 +17,7 @@ def read_root():
 
 @app.post("/api/v1/match")
 async def handle_match_request(
-    request_text: str = Form(...), uploaded_file: Optional[UploadFile] = File(None)
+    request_text: str = Form(...), uploaded_file: UploadFile | None = File
 ):
     """
     Endpoint for the mobile app to send text requests and optional files/images.
