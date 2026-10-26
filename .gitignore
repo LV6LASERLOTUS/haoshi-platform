@@ -1,0 +1,31 @@
+# --- Python / Backend ---
+# Virtual environments
+backend/.venv/
+backend/venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local Hugging Face & PaddleOCR model caches (Prevents gigabytes of weights from being tracked)
+.cache/
+huggingface/
+.paddleocr/
+
+# Environment variables or local credentials
+backend/.env
+backend/credentials.json
+
+# --- Node.js / React Native Mobile App ---
+mobile-app/node_modules/
+mobile-app/.expo/
+mobile-app/dist/
+mobile-app/web-build/
+.npm
+
+# --- OS Specific Files ---
+.DS_Store
+Thumbs.db
+
+# --- IDE / Editor Settings ---
+.vscode/
+.idea/

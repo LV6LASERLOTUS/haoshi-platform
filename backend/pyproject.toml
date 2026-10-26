@@ -1,0 +1,17 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.162.0",
+    "gspread>=6.2.1",
+    "numpy>=2.4.6",
+    "paddleocr>=3.4.1",
+    "paddlepaddle>=3.3.1",
+    "pandas>=3.1.0",
+    "python-multipart>=0.0.32",
+    "sentence-transformers>=6.2.0",
+    "uvicorn>=0.54.0",
+]
