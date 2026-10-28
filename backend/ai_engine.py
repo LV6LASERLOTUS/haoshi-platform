@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer, util
 
 # 1. Initialize Local Chinese OCR (Runs 100% offline, supports Traditional/Simplified Chinese)
 print("Loading PaddleOCR model...")
-ocr = PaddleOCR(use_angle_cls=True, lang="ch")
+ocr = PaddleOCR(use_textline_orientation=True, lang="ch")
 
 # 2. Initialize Local Chinese Semantic Embedding Model (~95MB, runs on CPU)
 print("Loading BAAI/bge-small-zh-v1.5 model...")
