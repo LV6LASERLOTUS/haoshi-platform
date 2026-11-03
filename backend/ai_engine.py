@@ -20,18 +20,15 @@ def extract_text_from_image(image_path: str) -> str:
     if not os.path.exists(image_path):
         return ""
 
-    result = ocr.ocr(image_path, cls=True)
-    print(result)
+    result = ocr.predict(image_path)
     extracted_lines = []
 
-    for idx in range(len(result)):
-        res = result[idx]
-        if res:
-            for line in res:
-                text = line[1][0]  # Extracted text string
-                confidence = line[1][1]
-                if confidence > 0.6:  # Filter low-confidence noise
-                    extracted_lines.append(text)
+    for res in result:
+        rec_texts = res.get("rec_texts", [])
+        rec_scores = res.get("rec_scores", [])
+        for text, confidence in zip(rec_texts, rec_scores):
+            if confidence > 0.6:  # Filter low-confidence noise
+                extracted_lines.append(text)
 
     return " ".join(extracted_lines)
 
