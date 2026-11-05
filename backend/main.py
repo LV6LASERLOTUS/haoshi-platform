@@ -29,7 +29,7 @@ async def handle_match_request(
     final_query_text = request_text
     file_name = "No file uploaded"
 
-    # 1. OCR Processing if file attached
+    # 1. 若有附加檔案，則進行 OCR 處理
     if uploaded_file:
         file_name = uploaded_file.filename
         file_path = os.path.join(UPLOAD_DIR, file_name)
@@ -43,7 +43,7 @@ async def handle_match_request(
         if os.path.exists(file_path):
             os.remove(file_path)
 
-    # 2. Fetch Live NPO Profiles from Google Sheets (Falls back to mock data if credentials are pending)
+    # 2. 從 Google Sheets 取得即時 NPO 資料（若憑證尚未就緒，則改用模擬資料）
     # npo_database = load_npos_from_sheet()
     npo_database = [
         {
@@ -58,7 +58,7 @@ async def handle_match_request(
         },
     ]
 
-    # 3. Calculate match scores using local BGE model against live sheet data
+    # 3. 使用本地 BGE 模型對即時試算表資料計算匹配分數
     results = []
     for npo in npo_database:
         score = calculate_match_score(final_query_text, npo["focus"])
@@ -71,7 +71,7 @@ async def handle_match_request(
             }
         )
 
-    # Sort by highest score
+    # 依分數由高到低排序
     results = sorted(results, key=lambda x: x["match_score"], reverse=True)
 
     return {

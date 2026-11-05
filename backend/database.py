@@ -2,7 +2,7 @@ import os
 
 import gspread
 
-# Define the scope for Google Sheets and Drive
+# 定義 Google Sheets 與 Drive 的存取範圍
 SCOPE = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/drive",
@@ -11,8 +11,8 @@ SCOPE = [
 
 def load_npos_from_sheet():
     """
-    Connects to Google Sheets via gspread and fetches all active NPO profiles.
-    Expects a sheet named 'NPO_Database' with columns like: id, name, focus
+    透過 gspread 連線至 Google Sheets，並取得所有有效的 NPO 資料。
+    預期有一個名為 'NPO_Database' 的工作表，欄位包含：id, name, focus
     """
     credentials_path = "credentials.json"
 
@@ -21,13 +21,13 @@ def load_npos_from_sheet():
         return []
 
     try:
-        # Authenticate using the service account key file
+        # 使用服務帳戶金鑰檔進行驗證
         client = gspread.service_account(filename="credentials.json")
 
-        # Open your Google Sheet by its exact title
+        # 依完整名稱開啟 Google 試算表
         sheet = client.open("好事大平台_Database").worksheet("NPO_Database")
 
-        # Fetch all records as a list of dictionaries
+        # 以字典清單的形式取得所有記錄
         records = sheet.get_all_records()
         return records
     except ConnectionError as e:

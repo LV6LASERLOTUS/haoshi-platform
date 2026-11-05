@@ -4,18 +4,18 @@ import numpy as np
 from paddleocr import PaddleOCR
 from sentence_transformers import SentenceTransformer, util
 
-# 1. Initialize Local Chinese OCR (Runs 100% offline, supports Traditional/Simplified Chinese)
+# 1. 初始化本地中文 OCR（完全離線運行，支援繁體／簡體中文）
 print("Loading PaddleOCR model...")
 ocr = PaddleOCR(use_textline_orientation=True, lang="ch")
 
-# 2. Initialize Local Chinese Semantic Embedding Model (~95MB, runs on CPU)
+# 2. 初始化本地中文語意嵌入模型（約 95MB，於 CPU 上運行）
 print("Loading BAAI/bge-small-zh-v1.5 model...")
 embedding_model = SentenceTransformer("BAAI/bge-small-zh-v1.5")
 
 
 def extract_text_from_image(image_path: str) -> str:
     """
-    Extracts Chinese text from an uploaded image file using local PaddleOCR.
+    使用本地 PaddleOCR 從上傳的圖片檔中擷取中文文字。
     """
     if not os.path.exists(image_path):
         return ""
@@ -27,7 +27,7 @@ def extract_text_from_image(image_path: str) -> str:
         rec_texts = res.get("rec_texts", [])
         rec_scores = res.get("rec_scores", [])
         for text, confidence in zip(rec_texts, rec_scores):
-            if confidence > 0.6:  # Filter low-confidence noise
+            if confidence > 0.6:  # 過濾低信心度的雜訊
                 extracted_lines.append(text)
 
     return " ".join(extracted_lines)
@@ -35,21 +35,21 @@ def extract_text_from_image(image_path: str) -> str:
 
 def get_embedding(text: str) -> np.ndarray:
     """
-    Converts a Chinese text string into a semantic vector embedding.
+    將中文文字字串轉換為語意向量嵌入。
     """
-    # BGE models perform best with instruction formatting for queries,
-    # but direct encoding works well for short descriptive matching.
+    # BGE 模型在查詢時搭配指令格式效果最佳，
+    # 但對於簡短的描述性比對，直接編碼也能運作良好。
     return embedding_model.encode(text, normalize_embeddings=True)
 
 
 def calculate_match_score(user_query: str, npo_focus_description: str) -> float:
     """
-    Calculates cosine similarity between the user's request and an NPO's focus area description.
-    Returns a score between 0.0 and 1.0.
+    計算使用者需求與 NPO 關注領域描述之間的餘弦相似度。
+    回傳介於 0.0 到 1.0 之間的分數。
     """
     query_vector = get_embedding(user_query)
     npo_vector = get_embedding(npo_focus_description)
 
-    # Compute cosine similarity
+    # 計算餘弦相似度
     score = util.cos_sim(query_vector, npo_vector).item()
     return round(score, 4)
