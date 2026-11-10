@@ -1,10 +1,9 @@
-
-# 🤝 好事大平台 (Haoshi Platform)
+🤝 好事大平台 (Haoshi Platform)
 > 一個以隱私優先的全端合作媒合平台，利用本地端繁/簡體中文 OCR 與語意 AI 嵌入技術，將企業 CSR 需求與非政府組織（NPO）進行智慧配對——完全無需付費雲端 API。
 <p align="center">
-  <img width="380" alt="好是大平台app_result" src="https://github.com/user-attachments/assets/c8be9a98-3d70-4702-aee5-3da0695eb2cc" />
+  <img width="380" height="820" alt="好是大平台app_result" src="https://github.com/user-attachments/assets/1faa9968-586d-41ce-878a-4ffb21667ded" />
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="380" alt="好是大平台app_search" src="https://github.com/user-attachments/assets/0e425823-cdf7-4210-a8a9-cb5098b89817" />
+  <img width="380" height="820" alt="好是大平台app_search" src="https://github.com/user-attachments/assets/c3ff1e6c-8617-4f6e-9d87-aa5f4d2fd7f8" />
 </p>
 
 ---
