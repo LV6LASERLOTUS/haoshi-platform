@@ -6,26 +6,35 @@
 
 ## 🏗️ 系統架構流程
 
-```text
-[ 1. 資料輸入：行動應用程式 ]
-  • React Native / Expo 行動應用程式（iOS 與 Android）
-  • 中文文字輸入框 + 圖片／提案上傳
-               │
-               ▼（HTTP REST API / POST）
-[ 2. 處理引擎：Python 後端 ]
-  • API 框架：FastAPI
-  • 本地端 OCR：PaddleOCR（從圖片／PDF 中擷取文字）
-  • 本地端語意嵌入：BAAI/bge-small-zh-v1.5（語意配對）
-  • 與 Google Sheets API 同步（gspread）
-               │
-               ▼（更新配對記錄）
-[ 3. 資料中樞：主 Google 試算表 ]
-  • 頁籤：`NPO_Database`、`Business_Database`、`Match_Engine`
-               │
-               ▼（拉取即時資料）
-[ 4. 資料展示：網頁儀表板 ]
-  • 介面：Looker Studio、Streamlit 或 Retool
-  • 反向查詢：AI 推薦 + 理由說明 + 注意事項情境
+```mermaid
+flowchart TD
+    User(["👤 使用者 / 企業"])
+
+    subgraph Frontend["1. 前端介面 (React Native / React Web)"]
+        Input["📝 輸入合作需求文字 & 上傳圖片／提案檔案"]
+        Result["📊 瀏覽推薦 NPO、匹配分數與理由 & 發送合作信"]
+    end
+
+    subgraph Backend["2. Python FastAPI 後端與本地 AI 引擎"]
+        API["⚡ FastAPI 接收請求"]
+        OCR["🔍 本地端 OCR (PaddleOCR)<br/>從上傳檔案中擷取中文文字"]
+        Embed["🧠 本地語意 AI (BGE 模型)<br/>比對需求文字與 NPO 核心任務的語意相似度"]
+        Rank["🏆 計算匹配度並排序最佳人選"]
+    end
+
+    subgraph Data["3. 資料中樞"]
+        DB[("📄 Google Sheets<br/>NPO 資料庫")]
+    end
+
+    User --> Input
+    Input -- "發送配對請求 (文字 + 附件)" --> API
+    API -- "若有附件" --> OCR
+    OCR -- "合併擷取文字" --> Embed
+    API -- "純文字需求" --> Embed
+    DB -- "讀取 NPO 資料" --> Embed
+    Embed --> Rank
+    Rank -- "回傳最佳配對結果與推薦理由" --> Result
+    Result --> User
 ```
 
 ---
@@ -38,11 +47,15 @@ haoshi-platform/
 ├── backend/                 # Python FastAPI 伺服器與 AI 引擎
 │   ├── main.py              # FastAPI 端點與 CORS 設定
 │   ├── ai_engine.py         # PaddleOCR 與 BGE 語意嵌入邏輯
+│   ├── database.py          # gspread 讀取 Google Sheets NPO 資料
 │   └── pyproject.toml       # uv 相依套件管理設定檔
 │
-└── mobile-app/              # React Native / Expo 行動客戶端
-    ├── App.js               # 行動裝置資料輸入介面（文字輸入與圖片選取）
-    └── package.json         # 行動端相依套件
+├── mobile-app/              # React Native / Expo 行動客戶端
+│   ├── App.js               # 行動裝置資料輸入介面（文字輸入與圖片選取）
+│   ├── components/          # CandidateCard、EmailActionToolbar、RequestBanner
+│   └── package.json         # 行動端相依套件
+│
+└── web-dashboard/           # React + Vite 網頁儀表板
 ```
 
 ---
