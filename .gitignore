@@ -2,6 +2,7 @@
 # Virtual environments
 backend/.venv/
 backend/venv/
+backend/config/
 __pycache__/
 *.py[cod]
 *$py.class

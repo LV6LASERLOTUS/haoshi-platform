@@ -1,17 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-export default function RequestBanner({ queryText, fileName, inputText, onChangeInput, onSubmit, loading, onReset }) {
+export default function SearchBar({ queryText, fileName, inputText, onChangeInput, onSubmit, loading, onReset }) {
   return (
     <View style={styles.bannerContainer}>
       {/* Top Row: Context & Reset */}
       <View style={styles.topRow}>
-        <View style={{ flex: 1, marginRight: 12 }}>
-          <Text style={styles.contextHeader}>📌 目前查詢脈絡</Text>
-          <Text style={styles.contextText} numberOfLines={1}>
-            {queryText} {fileName ? `(📎 ${fileName})` : ''}
-          </Text>
-        </View>
         <TouchableOpacity style={styles.resetButton} onPress={onReset}>
           <Text style={styles.resetText}>清除重設 🔄</Text>
         </TouchableOpacity>

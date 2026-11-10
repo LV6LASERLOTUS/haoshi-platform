@@ -1,5 +1,6 @@
-from ai_engine import calculate_match_score
 from fastapi.testclient import TestClient
+
+from ai_engine import calculate_match_score
 from main import app
 
 # 初始化 FastAPI TestClient
