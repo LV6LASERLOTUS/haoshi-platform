@@ -12,9 +12,7 @@
 
 ```mermaid
 flowchart TD
-    User(["👤 使用者 / 企業"])
-
-    subgraph Frontend["1. 前端介面 (React Native / React Web)"]
+    subgraph Frontend["1. 前端 App 介面 (React Native / React Web)"]
         Input["📝 輸入合作需求文字 & 上傳圖片／提案檔案"]
         Result["📊 瀏覽推薦 NPO、匹配分數與理由 & 發送合作信"]
     end
@@ -24,21 +22,21 @@ flowchart TD
         OCR["🔍 本地端 OCR (PaddleOCR)<br/>從上傳檔案中擷取中文文字"]
         Embed["🧠 本地語意 AI (BGE 模型)<br/>比對需求文字與 NPO 核心任務的語意相似度"]
         Rank["🏆 計算匹配度並排序最佳人選"]
+        LLM["🤖 LLM 讀取技能與回饋<br/>優化推薦內容與說明"]
     end
 
     subgraph Data["3. 資料中樞"]
         DB[("📄 Google Sheets<br/>NPO 資料庫")]
     end
 
-    User --> Input
     Input -- "發送配對請求 (文字 + 附件)" --> API
     API -- "若有附件" --> OCR
     OCR -- "合併擷取文字" --> Embed
     API -- "純文字需求" --> Embed
     DB -- "讀取 NPO 資料" --> Embed
     Embed --> Rank
-    Rank -- "回傳最佳配對結果與推薦理由" --> Result
-    Result --> User
+    Rank --> LLM
+    LLM -- "回傳最終推薦結果與理由" --> Result
 ```
 
 ---
