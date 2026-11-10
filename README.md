@@ -22,7 +22,7 @@ flowchart TD
         OCR["🔍 本地端 OCR (PaddleOCR)<br/>從上傳檔案中擷取中文文字"]
         Embed["🧠 本地語意 AI (BGE 模型)<br/>比對需求文字與 NPO 核心任務的語意相似度"]
         Rank["🏆 計算匹配度並排序最佳人選"]
-        LLM["🤖 LLM 讀取技能與回饋<br/>優化推薦內容與說明"]
+        LLM["🤖 LLM 讀取Skill與回饋<br/>優化推薦內容與說明"]
     end
 
     subgraph Data["3. 資料中樞"]
