@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1",
+  "request": {
+    "id": "request-demo-001",
+    "text": "我們希望在彰化辦兩天程式營隊，服務 40 位國小學童，讓 20 位員工參與志工，總預算上限為新台幣 15 萬元。",
+    "target_groups": ["children"],
+    "issue_tags": ["digital_education"],
+    "activity_types": ["coding_camp"],
+    "cooperation_modes": ["employee_volunteering"],
+    "location_codes": ["TW-CHA"],
+    "budget": {
+      "max_amount": 150000,
+      "currency": "TWD"
+    },
+    "event_dates": ["2027-01-16", "2027-01-17"],
+    "submitted_on": "2026-11-11",
+    "beneficiary_count": 40,
+    "employee_volunteer_count": 20,
+    "required_fields": ["target_groups", "location_codes", "budget"]
+  },
+  "organizations": [
+    {
+      "id": "npo-demo-001",
+      "name": "範例偏鄉教育協會（虛構）",
+      "description": "以偏鄉兒童數位教育為主要服務方向。",
+      "target_groups": ["children"],
+      "issue_tags": ["digital_education"],
+      "service_location_codes": ["TW-CHA"],
+      "source": "mock:recommendation-example",
+      "updated_at": null
+    },
+    {
+      "id": "npo-demo-002",
+      "name": "範例教育基金會（虛構、僅有簡介）",
+      "description": "提供兒童教育服務，其他合作細節待補。",
+      "target_groups": null,
+      "issue_tags": null,
+      "service_location_codes": null,
+      "source": "mock:recommendation-example",
+      "updated_at": null
+    }
+  ],
+  "programs": [
+    {
+      "id": "program-demo-001",
+      "organization_id": "npo-demo-001",
+      "name": "兩日程式營隊（虛構方案）",
+      "description": "由教學團隊與企業志工共同執行的兩日程式體驗活動。",
+      "target_groups": ["children"],
+      "issue_tags": ["digital_education"],
+      "activity_types": ["coding_camp"],
+      "cooperation_modes": ["employee_volunteering"],
+      "service_location_codes": ["TW-CHA"],
+      "cost": {
+        "min_amount": 100000,
+        "max_amount": 180000,
+        "currency": "TWD",
+        "includes_all_costs": null
+      },
+      "max_beneficiaries": 50,
+      "max_employee_volunteers": null,
+      "minimum_lead_days": 28,
+      "available_dates": null,
+      "availability_window": null,
+      "source": "mock:recommendation-example",
+      "updated_at": null
+    }
+  ]
+}

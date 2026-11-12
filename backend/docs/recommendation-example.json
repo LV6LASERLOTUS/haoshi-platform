@@ -1,0 +1,3556 @@
+{
+  "schema_version": "0.2",
+  "dataset_info": {
+    "is_mock": true,
+    "as_of_date": "2026-11-12",
+    "description": "依組織主檔／接觸紀錄／顧問筆記欄位製作，全部為虛構資料。類別值為示範，非正式字典；上架欄原名待確認。"
+  },
+  "organizations": [
+    {
+      "organization_id": "ORG-001",
+      "name": "示範童學北區協會（虛構）",
+      "issue_tags": [
+        "兒童教育",
+        "數位學習"
+      ],
+      "target_groups": [
+        "兒童",
+        "青少年"
+      ],
+      "regions": [
+        "臺北市"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 0,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-002",
+      "name": "示範青伴北區協會（虛構）",
+      "issue_tags": [
+        "青少年培力",
+        "生涯探索"
+      ],
+      "target_groups": [
+        "青少年"
+      ],
+      "regions": [
+        "新北市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 8,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-003",
+      "name": "示範銀齡北區協會（虛構）",
+      "issue_tags": [
+        "長者陪伴",
+        "社區照顧"
+      ],
+      "target_groups": [
+        "長者"
+      ],
+      "regions": [
+        "臺北市"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 1,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-004",
+      "name": "示範共融北區協會（虛構）",
+      "issue_tags": [
+        "身心障礙支持",
+        "就業支持"
+      ],
+      "target_groups": [
+        "身心障礙者"
+      ],
+      "regions": [
+        "新北市"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 12,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-005",
+      "name": "示範家力北區協會（虛構）",
+      "issue_tags": [
+        "家庭支持",
+        "婦女培力"
+      ],
+      "target_groups": [
+        "婦女",
+        "家庭照顧者"
+      ],
+      "regions": [
+        "臺北市"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 2,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-006",
+      "name": "示範山海北區協會（虛構）",
+      "issue_tags": [
+        "環境教育",
+        "生態保育"
+      ],
+      "target_groups": [
+        "一般民眾",
+        "兒童"
+      ],
+      "regions": [
+        "新北市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 20,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-007",
+      "name": "示範毛伴北區協會（虛構）",
+      "issue_tags": [
+        "動物保護",
+        "生命教育"
+      ],
+      "target_groups": [
+        "一般民眾"
+      ],
+      "regions": [
+        "臺北市"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 3,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-008",
+      "name": "示範安心北區協會（虛構）",
+      "issue_tags": [
+        "疾病支持",
+        "照顧者支持"
+      ],
+      "target_groups": [
+        "疾病患者",
+        "家庭照顧者"
+      ],
+      "regions": [
+        "新北市"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": null,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-009",
+      "name": "示範鄰里北區協會（虛構）",
+      "issue_tags": [
+        "社區發展",
+        "食物支持"
+      ],
+      "target_groups": [
+        "一般民眾",
+        "弱勢家庭"
+      ],
+      "regions": [
+        "臺北市"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 5,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-010",
+      "name": "示範新芽北區協會（虛構）",
+      "issue_tags": null,
+      "target_groups": [
+        "新住民",
+        "兒童"
+      ],
+      "regions": [
+        "新北市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 0,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-011",
+      "name": "示範原力北區協會（虛構）",
+      "issue_tags": [
+        "文化保存",
+        "地方發展"
+      ],
+      "target_groups": [
+        "原住民族",
+        "青少年"
+      ],
+      "regions": [
+        "臺北市"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 8,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-012",
+      "name": "示範藝起北區協會（虛構）",
+      "issue_tags": [
+        "藝術教育",
+        "文化參與"
+      ],
+      "target_groups": [
+        "兒童",
+        "一般民眾"
+      ],
+      "regions": [
+        "新北市"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 1,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-013",
+      "name": "示範童學中區協會（虛構）",
+      "issue_tags": [
+        "兒童教育",
+        "數位學習"
+      ],
+      "target_groups": [
+        "兒童",
+        "青少年"
+      ],
+      "regions": [
+        "臺中市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 12,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-014",
+      "name": "示範青伴中區協會（虛構）",
+      "issue_tags": [
+        "青少年培力",
+        "生涯探索"
+      ],
+      "target_groups": [
+        "青少年"
+      ],
+      "regions": [
+        "彰化縣"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 2,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-015",
+      "name": "示範銀齡中區協會（虛構）",
+      "issue_tags": [
+        "長者陪伴",
+        "社區照顧"
+      ],
+      "target_groups": [
+        "長者"
+      ],
+      "regions": [
+        "臺中市"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 20,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-016",
+      "name": "示範共融中區協會（虛構）",
+      "issue_tags": [
+        "身心障礙支持",
+        "就業支持"
+      ],
+      "target_groups": null,
+      "regions": [
+        "彰化縣"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 3,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-017",
+      "name": "示範家力中區協會（虛構）",
+      "issue_tags": [
+        "家庭支持",
+        "婦女培力"
+      ],
+      "target_groups": [
+        "婦女",
+        "家庭照顧者"
+      ],
+      "regions": [
+        "臺中市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": null,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-018",
+      "name": "示範山海中區協會（虛構）",
+      "issue_tags": [
+        "環境教育",
+        "生態保育"
+      ],
+      "target_groups": [
+        "一般民眾",
+        "兒童"
+      ],
+      "regions": [
+        "彰化縣"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 5,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-019",
+      "name": "示範毛伴中區協會（虛構）",
+      "issue_tags": [
+        "動物保護",
+        "生命教育"
+      ],
+      "target_groups": [
+        "一般民眾"
+      ],
+      "regions": [
+        "臺中市"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 0,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-020",
+      "name": "示範安心中區協會（虛構）",
+      "issue_tags": [
+        "疾病支持",
+        "照顧者支持"
+      ],
+      "target_groups": [
+        "疾病患者",
+        "家庭照顧者"
+      ],
+      "regions": [
+        "彰化縣"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 8,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-021",
+      "name": "示範鄰里中區協會（虛構）",
+      "issue_tags": [
+        "社區發展",
+        "食物支持"
+      ],
+      "target_groups": [
+        "一般民眾",
+        "弱勢家庭"
+      ],
+      "regions": [
+        "臺中市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 1,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-022",
+      "name": "示範新芽中區協會（虛構）",
+      "issue_tags": [
+        "多元文化",
+        "生活適應"
+      ],
+      "target_groups": [
+        "新住民",
+        "兒童"
+      ],
+      "regions": [
+        "彰化縣"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 12,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-023",
+      "name": "示範原力中區協會（虛構）",
+      "issue_tags": [
+        "文化保存",
+        "地方發展"
+      ],
+      "target_groups": [
+        "原住民族",
+        "青少年"
+      ],
+      "regions": null,
+      "membership_status": null,
+      "full_time_staff_count": 2,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-024",
+      "name": "示範藝起中區協會（虛構）",
+      "issue_tags": [
+        "藝術教育",
+        "文化參與"
+      ],
+      "target_groups": [
+        "兒童",
+        "一般民眾"
+      ],
+      "regions": [
+        "彰化縣"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 20,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-025",
+      "name": "示範童學南區協會（虛構）",
+      "issue_tags": [
+        "兒童教育",
+        "數位學習"
+      ],
+      "target_groups": [
+        "兒童",
+        "青少年"
+      ],
+      "regions": [
+        "臺南市"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 3,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-026",
+      "name": "示範青伴南區協會（虛構）",
+      "issue_tags": [
+        "青少年培力",
+        "生涯探索"
+      ],
+      "target_groups": [
+        "青少年"
+      ],
+      "regions": [
+        "高雄市"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": null,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-027",
+      "name": "示範銀齡南區協會（虛構）",
+      "issue_tags": [
+        "長者陪伴",
+        "社區照顧"
+      ],
+      "target_groups": [
+        "長者"
+      ],
+      "regions": [
+        "臺南市"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 5,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-028",
+      "name": "示範共融南區協會（虛構）",
+      "issue_tags": [
+        "身心障礙支持",
+        "就業支持"
+      ],
+      "target_groups": [
+        "身心障礙者"
+      ],
+      "regions": [
+        "高雄市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 0,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-029",
+      "name": "示範家力南區協會（虛構）",
+      "issue_tags": [
+        "家庭支持",
+        "婦女培力"
+      ],
+      "target_groups": [
+        "婦女",
+        "家庭照顧者"
+      ],
+      "regions": [
+        "臺南市"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 8,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-030",
+      "name": "示範山海南區協會（虛構）",
+      "issue_tags": [
+        "環境教育",
+        "生態保育"
+      ],
+      "target_groups": [
+        "一般民眾",
+        "兒童"
+      ],
+      "regions": [
+        "高雄市"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 1,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-031",
+      "name": "示範毛伴南區協會（虛構）",
+      "issue_tags": [
+        "動物保護",
+        "生命教育"
+      ],
+      "target_groups": [
+        "一般民眾"
+      ],
+      "regions": [
+        "臺南市"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 12,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-032",
+      "name": "示範安心南區協會（虛構）",
+      "issue_tags": null,
+      "target_groups": [
+        "疾病患者",
+        "家庭照顧者"
+      ],
+      "regions": [
+        "高雄市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 2,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-033",
+      "name": "示範鄰里南區協會（虛構）",
+      "issue_tags": [
+        "社區發展",
+        "食物支持"
+      ],
+      "target_groups": [
+        "一般民眾",
+        "弱勢家庭"
+      ],
+      "regions": [
+        "臺南市"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 20,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-034",
+      "name": "示範新芽南區協會（虛構）",
+      "issue_tags": [
+        "多元文化",
+        "生活適應"
+      ],
+      "target_groups": [
+        "新住民",
+        "兒童"
+      ],
+      "regions": [
+        "高雄市"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 3,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-035",
+      "name": "示範原力南區協會（虛構）",
+      "issue_tags": [
+        "文化保存",
+        "地方發展"
+      ],
+      "target_groups": [
+        "原住民族",
+        "青少年"
+      ],
+      "regions": [
+        "臺南市"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": null,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-036",
+      "name": "示範藝起南區協會（虛構）",
+      "issue_tags": [
+        "藝術教育",
+        "文化參與"
+      ],
+      "target_groups": [
+        "兒童",
+        "一般民眾"
+      ],
+      "regions": [
+        "高雄市"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 5,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-037",
+      "name": "示範童學東區協會（虛構）",
+      "issue_tags": [
+        "兒童教育",
+        "數位學習"
+      ],
+      "target_groups": [
+        "兒童",
+        "青少年"
+      ],
+      "regions": [
+        "花蓮縣"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 0,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-038",
+      "name": "示範青伴東區協會（虛構）",
+      "issue_tags": [
+        "青少年培力",
+        "生涯探索"
+      ],
+      "target_groups": null,
+      "regions": [
+        "臺東縣"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 8,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-039",
+      "name": "示範銀齡東區協會（虛構）",
+      "issue_tags": [
+        "長者陪伴",
+        "社區照顧"
+      ],
+      "target_groups": [
+        "長者"
+      ],
+      "regions": [
+        "花蓮縣"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 1,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-040",
+      "name": "示範共融東區協會（虛構）",
+      "issue_tags": [
+        "身心障礙支持",
+        "就業支持"
+      ],
+      "target_groups": [
+        "身心障礙者"
+      ],
+      "regions": [
+        "臺東縣"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 12,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-041",
+      "name": "示範家力東區協會（虛構）",
+      "issue_tags": [
+        "家庭支持",
+        "婦女培力"
+      ],
+      "target_groups": [
+        "婦女",
+        "家庭照顧者"
+      ],
+      "regions": [
+        "花蓮縣"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 2,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-042",
+      "name": "示範山海東區協會（虛構）",
+      "issue_tags": [
+        "環境教育",
+        "生態保育"
+      ],
+      "target_groups": [
+        "一般民眾",
+        "兒童"
+      ],
+      "regions": [
+        "臺東縣"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 20,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-043",
+      "name": "示範毛伴東區協會（虛構）",
+      "issue_tags": [
+        "動物保護",
+        "生命教育"
+      ],
+      "target_groups": [
+        "一般民眾"
+      ],
+      "regions": [
+        "花蓮縣"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 3,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-044",
+      "name": "示範安心東區協會（虛構）",
+      "issue_tags": [
+        "疾病支持",
+        "照顧者支持"
+      ],
+      "target_groups": [
+        "疾病患者",
+        "家庭照顧者"
+      ],
+      "regions": [
+        "臺東縣"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": null,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-045",
+      "name": "示範鄰里東區協會（虛構）",
+      "issue_tags": [
+        "社區發展",
+        "食物支持"
+      ],
+      "target_groups": [
+        "一般民眾",
+        "弱勢家庭"
+      ],
+      "regions": [
+        "花蓮縣"
+      ],
+      "membership_status": null,
+      "full_time_staff_count": 5,
+      "financial_report_type": "收支報表",
+      "platform_listing_status": null,
+      "support_tier": null,
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-046",
+      "name": "示範新芽東區協會（虛構）",
+      "issue_tags": [
+        "多元文化",
+        "生活適應"
+      ],
+      "target_groups": [
+        "新住民",
+        "兒童"
+      ],
+      "regions": [
+        "臺東縣"
+      ],
+      "membership_status": "有效會員",
+      "full_time_staff_count": 0,
+      "financial_report_type": null,
+      "platform_listing_status": null,
+      "support_tier": "一般關懷",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-047",
+      "name": "示範原力東區協會（虛構）",
+      "issue_tags": [
+        "文化保存",
+        "地方發展"
+      ],
+      "target_groups": [
+        "原住民族",
+        "青少年"
+      ],
+      "regions": [
+        "花蓮縣"
+      ],
+      "membership_status": "待續會",
+      "full_time_staff_count": 8,
+      "financial_report_type": "查核簽證財報",
+      "platform_listing_status": null,
+      "support_tier": "定期追蹤",
+      "source": "mock:organization_master"
+    },
+    {
+      "organization_id": "ORG-048",
+      "name": "示範藝起東區協會（虛構）",
+      "issue_tags": [
+        "藝術教育",
+        "文化參與"
+      ],
+      "target_groups": [
+        "兒童",
+        "一般民眾"
+      ],
+      "regions": [
+        "臺東縣"
+      ],
+      "membership_status": "非會員",
+      "full_time_staff_count": 1,
+      "financial_report_type": "財務報表",
+      "platform_listing_status": null,
+      "support_tier": "密集陪跑",
+      "source": "mock:organization_master"
+    }
+  ],
+  "contacts": [
+    {
+      "contact_id": "CONTACT-168",
+      "organization_id": "ORG-004",
+      "date": "2024-12-12",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-055",
+      "organization_id": "ORG-003",
+      "date": "2024-12-13",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-062",
+      "organization_id": "ORG-023",
+      "date": "2024-12-14",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-009",
+      "organization_id": "ORG-009",
+      "date": "2024-12-15",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-020",
+      "organization_id": "ORG-020",
+      "date": "2024-12-15",
+      "contact_type": "危機諮詢",
+      "activity_name": null,
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-028",
+      "organization_id": "ORG-028",
+      "date": "2024-12-15",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-018",
+      "organization_id": "ORG-018",
+      "date": "2024-12-18",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": null,
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-022",
+      "organization_id": "ORG-022",
+      "date": "2024-12-21",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-151",
+      "organization_id": "ORG-006",
+      "date": "2024-12-23",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-118",
+      "organization_id": "ORG-015",
+      "date": "2024-12-24",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-013",
+      "organization_id": "ORG-013",
+      "date": "2024-12-27",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-166",
+      "organization_id": "ORG-023",
+      "date": "2024-12-30",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-008",
+      "organization_id": "ORG-008",
+      "date": "2025-01-05",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-190",
+      "organization_id": "ORG-010",
+      "date": "2025-01-13",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-059",
+      "organization_id": "ORG-002",
+      "date": "2025-01-15",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-133",
+      "organization_id": "ORG-001",
+      "date": "2025-01-22",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-159",
+      "organization_id": "ORG-023",
+      "date": "2025-01-25",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-169",
+      "organization_id": "ORG-030",
+      "date": "2025-01-26",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-105",
+      "organization_id": "ORG-015",
+      "date": "2025-01-30",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-047",
+      "organization_id": "ORG-003",
+      "date": "2025-01-31",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-071",
+      "organization_id": "ORG-004",
+      "date": "2025-02-02",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-142",
+      "organization_id": "ORG-018",
+      "date": "2025-02-09",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-121",
+      "organization_id": "ORG-017",
+      "date": "2025-02-10",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-095",
+      "organization_id": "ORG-002",
+      "date": "2025-02-11",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-155",
+      "organization_id": "ORG-029",
+      "date": "2025-02-12",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-181",
+      "organization_id": "ORG-041",
+      "date": "2025-02-16",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-179",
+      "organization_id": "ORG-013",
+      "date": "2025-02-19",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-031",
+      "organization_id": "ORG-031",
+      "date": "2025-02-23",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-060",
+      "organization_id": "ORG-024",
+      "date": "2025-02-28",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-092",
+      "organization_id": "ORG-037",
+      "date": "2025-03-06",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-156",
+      "organization_id": "ORG-041",
+      "date": "2025-03-12",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-037",
+      "organization_id": "ORG-037",
+      "date": "2025-03-17",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-098",
+      "organization_id": "ORG-017",
+      "date": "2025-03-18",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-108",
+      "organization_id": "ORG-024",
+      "date": "2025-03-20",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-198",
+      "organization_id": "ORG-022",
+      "date": "2025-03-26",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-171",
+      "organization_id": "ORG-026",
+      "date": "2025-03-30",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": null,
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-114",
+      "organization_id": "ORG-001",
+      "date": "2025-04-02",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-124",
+      "organization_id": "ORG-018",
+      "date": "2025-04-02",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-112",
+      "organization_id": "ORG-011",
+      "date": "2025-04-07",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-132",
+      "organization_id": "ORG-024",
+      "date": "2025-04-16",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-086",
+      "organization_id": "ORG-002",
+      "date": "2025-04-17",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": null,
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-131",
+      "organization_id": "ORG-012",
+      "date": "2025-04-18",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-177",
+      "organization_id": "ORG-008",
+      "date": "2025-04-18",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-101",
+      "organization_id": "ORG-003",
+      "date": "2025-04-20",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-110",
+      "organization_id": "ORG-003",
+      "date": "2025-04-25",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-090",
+      "organization_id": "ORG-020",
+      "date": "2025-05-01",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-087",
+      "organization_id": "ORG-037",
+      "date": "2025-05-02",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-111",
+      "organization_id": "ORG-028",
+      "date": "2025-05-11",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-153",
+      "organization_id": "ORG-027",
+      "date": "2025-05-11",
+      "contact_type": "危機諮詢",
+      "activity_name": null,
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-174",
+      "organization_id": "ORG-003",
+      "date": "2025-05-11",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-103",
+      "organization_id": "ORG-012",
+      "date": "2025-05-18",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": null,
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-120",
+      "organization_id": "ORG-036",
+      "date": "2025-05-20",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": null,
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-029",
+      "organization_id": "ORG-029",
+      "date": "2025-05-24",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-134",
+      "organization_id": "ORG-003",
+      "date": "2025-06-01",
+      "contact_type": "培力課程",
+      "activity_name": null,
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-001",
+      "organization_id": "ORG-001",
+      "date": "2025-06-17",
+      "contact_type": "培力課程",
+      "activity_name": null,
+      "participant_roles": null,
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-046",
+      "organization_id": "ORG-027",
+      "date": "2025-06-30",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-073",
+      "organization_id": "ORG-028",
+      "date": "2025-07-01",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-091",
+      "organization_id": "ORG-011",
+      "date": "2025-07-08",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-036",
+      "organization_id": "ORG-036",
+      "date": "2025-07-09",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-178",
+      "organization_id": "ORG-011",
+      "date": "2025-07-16",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-016",
+      "organization_id": "ORG-016",
+      "date": "2025-07-17",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-099",
+      "organization_id": "ORG-009",
+      "date": "2025-08-05",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-068",
+      "organization_id": "ORG-004",
+      "date": "2025-08-07",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-137",
+      "organization_id": "ORG-005",
+      "date": "2025-08-08",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": null,
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-041",
+      "organization_id": "ORG-041",
+      "date": "2025-08-14",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-199",
+      "organization_id": "ORG-006",
+      "date": "2025-08-14",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-173",
+      "organization_id": "ORG-010",
+      "date": "2025-08-30",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-042",
+      "organization_id": "ORG-042",
+      "date": "2025-09-16",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-165",
+      "organization_id": "ORG-001",
+      "date": "2025-09-17",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-167",
+      "organization_id": "ORG-036",
+      "date": "2025-09-17",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-061",
+      "organization_id": "ORG-034",
+      "date": "2025-09-18",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-154",
+      "organization_id": "ORG-009",
+      "date": "2025-09-18",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": null,
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-164",
+      "organization_id": "ORG-024",
+      "date": "2025-09-22",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-048",
+      "organization_id": "ORG-020",
+      "date": "2025-09-27",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-082",
+      "organization_id": "ORG-009",
+      "date": "2025-09-27",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-172",
+      "organization_id": "ORG-019",
+      "date": "2025-09-28",
+      "contact_type": "走訪",
+      "activity_name": null,
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-057",
+      "organization_id": "ORG-001",
+      "date": "2025-09-30",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-096",
+      "organization_id": "ORG-031",
+      "date": "2025-09-30",
+      "contact_type": "會員大會",
+      "activity_name": null,
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-066",
+      "organization_id": "ORG-001",
+      "date": "2025-10-03",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-195",
+      "organization_id": "ORG-002",
+      "date": "2025-10-06",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-056",
+      "organization_id": "ORG-009",
+      "date": "2025-10-13",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-097",
+      "organization_id": "ORG-022",
+      "date": "2025-10-19",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-011",
+      "organization_id": "ORG-011",
+      "date": "2025-10-23",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-084",
+      "organization_id": "ORG-003",
+      "date": "2025-10-24",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-079",
+      "organization_id": "ORG-017",
+      "date": "2025-10-25",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-185",
+      "organization_id": "ORG-036",
+      "date": "2025-11-05",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-032",
+      "organization_id": "ORG-032",
+      "date": "2025-11-11",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-094",
+      "organization_id": "ORG-025",
+      "date": "2025-11-13",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-025",
+      "organization_id": "ORG-025",
+      "date": "2025-11-16",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-017",
+      "organization_id": "ORG-017",
+      "date": "2025-11-21",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-053",
+      "organization_id": "ORG-012",
+      "date": "2025-11-21",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-147",
+      "organization_id": "ORG-002",
+      "date": "2025-11-22",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-136",
+      "organization_id": "ORG-004",
+      "date": "2025-11-23",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-006",
+      "organization_id": "ORG-006",
+      "date": "2025-11-26",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-122",
+      "organization_id": "ORG-032",
+      "date": "2025-11-28",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-070",
+      "organization_id": "ORG-008",
+      "date": "2025-12-02",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-193",
+      "organization_id": "ORG-015",
+      "date": "2025-12-04",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-140",
+      "organization_id": "ORG-004",
+      "date": "2025-12-06",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-187",
+      "organization_id": "ORG-028",
+      "date": "2025-12-10",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-116",
+      "organization_id": "ORG-035",
+      "date": "2025-12-14",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-010",
+      "organization_id": "ORG-010",
+      "date": "2025-12-20",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-182",
+      "organization_id": "ORG-002",
+      "date": "2025-12-24",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-052",
+      "organization_id": "ORG-003",
+      "date": "2025-12-25",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": null,
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-161",
+      "organization_id": "ORG-032",
+      "date": "2025-12-28",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-176",
+      "organization_id": "ORG-035",
+      "date": "2026-01-06",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-186",
+      "organization_id": "ORG-002",
+      "date": "2026-01-07",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-050",
+      "organization_id": "ORG-029",
+      "date": "2026-01-14",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-196",
+      "organization_id": "ORG-026",
+      "date": "2026-01-16",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-007",
+      "organization_id": "ORG-007",
+      "date": "2026-01-26",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-170",
+      "organization_id": "ORG-003",
+      "date": "2026-02-02",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-085",
+      "organization_id": "ORG-037",
+      "date": "2026-02-12",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-076",
+      "organization_id": "ORG-002",
+      "date": "2026-02-14",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-080",
+      "organization_id": "ORG-030",
+      "date": "2026-02-15",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-024",
+      "organization_id": "ORG-024",
+      "date": "2026-02-18",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-106",
+      "organization_id": "ORG-026",
+      "date": "2026-02-18",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-033",
+      "organization_id": "ORG-033",
+      "date": "2026-02-22",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-189",
+      "organization_id": "ORG-022",
+      "date": "2026-02-24",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-043",
+      "organization_id": "ORG-003",
+      "date": "2026-02-25",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-192",
+      "organization_id": "ORG-001",
+      "date": "2026-02-26",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-130",
+      "organization_id": "ORG-034",
+      "date": "2026-03-01",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-115",
+      "organization_id": "ORG-003",
+      "date": "2026-03-05",
+      "contact_type": "陪跑",
+      "activity_name": null,
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-163",
+      "organization_id": "ORG-002",
+      "date": "2026-03-06",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-002",
+      "organization_id": "ORG-002",
+      "date": "2026-03-07",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-044",
+      "organization_id": "ORG-014",
+      "date": "2026-03-10",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-191",
+      "organization_id": "ORG-026",
+      "date": "2026-03-13",
+      "contact_type": "課後追蹤",
+      "activity_name": null,
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-019",
+      "organization_id": "ORG-019",
+      "date": "2026-03-21",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-064",
+      "organization_id": "ORG-033",
+      "date": "2026-03-26",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-127",
+      "organization_id": "ORG-011",
+      "date": "2026-03-26",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-146",
+      "organization_id": "ORG-026",
+      "date": "2026-03-30",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-183",
+      "organization_id": "ORG-012",
+      "date": "2026-04-06",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-015",
+      "organization_id": "ORG-015",
+      "date": "2026-04-07",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-107",
+      "organization_id": "ORG-001",
+      "date": "2026-04-08",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-138",
+      "organization_id": "ORG-041",
+      "date": "2026-04-14",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-075",
+      "organization_id": "ORG-023",
+      "date": "2026-04-20",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-100",
+      "organization_id": "ORG-012",
+      "date": "2026-04-20",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-045",
+      "organization_id": "ORG-007",
+      "date": "2026-04-23",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-063",
+      "organization_id": "ORG-004",
+      "date": "2026-04-23",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-039",
+      "organization_id": "ORG-039",
+      "date": "2026-04-28",
+      "contact_type": "走訪",
+      "activity_name": null,
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-194",
+      "organization_id": "ORG-015",
+      "date": "2026-05-02",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-102",
+      "organization_id": "ORG-024",
+      "date": "2026-05-04",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-119",
+      "organization_id": "ORG-034",
+      "date": "2026-05-04",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-197",
+      "organization_id": "ORG-002",
+      "date": "2026-05-06",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-152",
+      "organization_id": "ORG-011",
+      "date": "2026-05-15",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-003",
+      "organization_id": "ORG-003",
+      "date": "2026-05-16",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-012",
+      "organization_id": "ORG-012",
+      "date": "2026-05-16",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-014",
+      "organization_id": "ORG-014",
+      "date": "2026-05-17",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-093",
+      "organization_id": "ORG-001",
+      "date": "2026-05-18",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-005",
+      "organization_id": "ORG-005",
+      "date": "2026-06-09",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-135",
+      "organization_id": "ORG-004",
+      "date": "2026-06-09",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-049",
+      "organization_id": "ORG-002",
+      "date": "2026-06-10",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-184",
+      "organization_id": "ORG-001",
+      "date": "2026-06-11",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-175",
+      "organization_id": "ORG-003",
+      "date": "2026-06-12",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-034",
+      "organization_id": "ORG-034",
+      "date": "2026-06-22",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-129",
+      "organization_id": "ORG-022",
+      "date": "2026-06-27",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-200",
+      "organization_id": "ORG-041",
+      "date": "2026-06-30",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-148",
+      "organization_id": "ORG-019",
+      "date": "2026-07-08",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-065",
+      "organization_id": "ORG-039",
+      "date": "2026-07-09",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-004",
+      "organization_id": "ORG-004",
+      "date": "2026-07-15",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-144",
+      "organization_id": "ORG-012",
+      "date": "2026-07-23",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-150",
+      "organization_id": "ORG-013",
+      "date": "2026-07-27",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-160",
+      "organization_id": "ORG-014",
+      "date": "2026-07-27",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-143",
+      "organization_id": "ORG-037",
+      "date": "2026-07-29",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-113",
+      "organization_id": "ORG-002",
+      "date": "2026-07-30",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-088",
+      "organization_id": "ORG-002",
+      "date": "2026-08-01",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-117",
+      "organization_id": "ORG-040",
+      "date": "2026-08-09",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-158",
+      "organization_id": "ORG-039",
+      "date": "2026-08-09",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-027",
+      "organization_id": "ORG-027",
+      "date": "2026-08-14",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-069",
+      "organization_id": "ORG-034",
+      "date": "2026-08-15",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": null,
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-083",
+      "organization_id": "ORG-003",
+      "date": "2026-08-17",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-058",
+      "organization_id": "ORG-004",
+      "date": "2026-08-19",
+      "contact_type": "課後追蹤",
+      "activity_name": null,
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-054",
+      "organization_id": "ORG-003",
+      "date": "2026-08-29",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-180",
+      "organization_id": "ORG-001",
+      "date": "2026-08-29",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-149",
+      "organization_id": "ORG-024",
+      "date": "2026-09-03",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-128",
+      "organization_id": "ORG-001",
+      "date": "2026-09-07",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-104",
+      "organization_id": "ORG-003",
+      "date": "2026-09-10",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-081",
+      "organization_id": "ORG-004",
+      "date": "2026-09-16",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-157",
+      "organization_id": "ORG-004",
+      "date": "2026-09-16",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:coaching_log"
+    },
+    {
+      "contact_id": "CONTACT-021",
+      "organization_id": "ORG-021",
+      "date": "2026-09-17",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-125",
+      "organization_id": "ORG-004",
+      "date": "2026-09-24",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-074",
+      "organization_id": "ORG-021",
+      "date": "2026-09-28",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-139",
+      "organization_id": "ORG-015",
+      "date": "2026-09-30",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-051",
+      "organization_id": "ORG-010",
+      "date": "2026-10-01",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-035",
+      "organization_id": "ORG-035",
+      "date": "2026-10-02",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": null,
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-023",
+      "organization_id": "ORG-023",
+      "date": "2026-10-03",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "對方表示近期有交接安排，後續應確認承辦窗口。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-126",
+      "organization_id": "ORG-022",
+      "date": "2026-10-03",
+      "contact_type": "獎補助入選",
+      "activity_name": "示範獎補助入選通知與需求確認",
+      "participant_roles": [
+        "理事"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-162",
+      "organization_id": "ORG-004",
+      "date": "2026-10-05",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-141",
+      "organization_id": "ORG-039",
+      "date": "2026-10-06",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-072",
+      "organization_id": "ORG-001",
+      "date": "2026-10-08",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-109",
+      "organization_id": "ORG-034",
+      "date": "2026-10-09",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-077",
+      "organization_id": "ORG-001",
+      "date": "2026-10-13",
+      "contact_type": "獎補助入選",
+      "activity_name": null,
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "有提出跨單位合作的想法，但決策者未出席，需要後續確認。",
+      "source": "mock:award_log"
+    },
+    {
+      "contact_id": "CONTACT-188",
+      "organization_id": "ORG-001",
+      "date": "2026-10-13",
+      "contact_type": "危機諮詢",
+      "activity_name": "人力交接與專案風險諮詢",
+      "participant_roles": null,
+      "free_text": "對方願意提供服務案例；尚未收到資料，不能視為已有佐證。",
+      "source": "mock:consultation_log"
+    },
+    {
+      "contact_id": "CONTACT-078",
+      "organization_id": "ORG-023",
+      "date": "2026-10-15",
+      "contact_type": "培力課程",
+      "activity_name": "需求盤點與專案規劃課程",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": null,
+      "source": "mock:course_attendance"
+    },
+    {
+      "contact_id": "CONTACT-030",
+      "organization_id": "ORG-030",
+      "date": "2026-10-16",
+      "contact_type": "課後追蹤",
+      "activity_name": "課程行動方案追蹤",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:pm_follow_up"
+    },
+    {
+      "contact_id": "CONTACT-145",
+      "organization_id": "ORG-015",
+      "date": "2026-10-16",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "執行長"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-040",
+      "organization_id": "ORG-040",
+      "date": "2026-10-23",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "詢問財務整理工具；未取得財報，不能判斷財務狀況。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-067",
+      "organization_id": "ORG-021",
+      "date": "2026-10-26",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "行政人員"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-026",
+      "organization_id": "ORG-026",
+      "date": "2026-11-01",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "參與者表示全職同仁有限，想了解可以分階段執行的做法。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-089",
+      "organization_id": "ORG-016",
+      "date": "2026-11-01",
+      "contact_type": "會員大會",
+      "activity_name": "年度會員交流",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "對方希望先釐清分工與預期成果，合作意願仍待正式提案確認。",
+      "source": "mock:member_meeting"
+    },
+    {
+      "contact_id": "CONTACT-123",
+      "organization_id": "ORG-009",
+      "date": "2026-11-02",
+      "contact_type": "走訪",
+      "activity_name": "服務現場走訪",
+      "participant_roles": [
+        "社工"
+      ],
+      "free_text": "本次討論以內部流程為主，未談到承接企業計畫的能力。",
+      "source": "mock:visit_log"
+    },
+    {
+      "contact_id": "CONTACT-038",
+      "organization_id": "ORG-038",
+      "date": "2026-11-04",
+      "contact_type": "陪跑",
+      "activity_name": "組織營運陪跑討論",
+      "participant_roles": [
+        "專案人員"
+      ],
+      "free_text": "此次活動參與積極；這是單次接觸觀察，不代表執行承諾。",
+      "source": "mock:coaching_log"
+    }
+  ],
+  "consultant_notes": [
+    {
+      "note_id": "NOTE-001",
+      "organization_id": "ORG-001",
+      "recorded_on": null,
+      "author_role": "資深顧問",
+      "note_text": "上次討論能清楚說明服務對象，但跨部門分工還需要再對齊。這是當時觀察，宜與現況核對。",
+      "source": "mock:consultant_notes"
+    },
+    {
+      "note_id": "NOTE-002",
+      "organization_id": "ORG-003",
+      "recorded_on": "2026-01-03",
+      "author_role": "PM",
+      "note_text": "對方提到想嘗試新做法，目前只有初步構想，尚無執行案例可供判斷。",
+      "source": "mock:pm_notes"
+    },
+    {
+      "note_id": "NOTE-003",
+      "organization_id": "ORG-005",
+      "recorded_on": "2026-03-26",
+      "author_role": "資深顧問",
+      "note_text": "組織窗口回覆具體，決策仍須回到內部會議；不要將窗口意願等同全組織承諾。",
+      "source": "mock:line_summary"
+    },
+    {
+      "note_id": "NOTE-004",
+      "organization_id": "ORG-008",
+      "recorded_on": "2026-08-15",
+      "author_role": "PM",
+      "note_text": "團隊熟悉在地需求，資料整理較分散。建議先協助盤點，不宜僅以資料量評價組織。",
+      "source": "mock:consultant_notes"
+    },
+    {
+      "note_id": "NOTE-005",
+      "organization_id": "ORG-011",
+      "recorded_on": "2025-07-17",
+      "author_role": "資深顧問",
+      "note_text": "先前交流節奏順暢，但近期人員可能異動，需再次確認目前窗口與可投入時間。",
+      "source": "mock:pm_notes"
+    },
+    {
+      "note_id": "NOTE-006",
+      "organization_id": "ORG-013",
+      "recorded_on": "2024-12-27",
+      "author_role": "PM",
+      "note_text": "本次僅短暫接觸，對執行能力沒有足夠依據，暫不下判斷。",
+      "source": "mock:line_summary"
+    },
+    {
+      "note_id": "NOTE-007",
+      "organization_id": "ORG-016",
+      "recorded_on": "2025-11-01",
+      "author_role": "資深顧問",
+      "note_text": "對方關心成效怎麼記錄，可能適合先做成果整理討論；實際參與意願待確認。",
+      "source": "mock:consultant_notes"
+    },
+    {
+      "note_id": "NOTE-008",
+      "organization_id": "ORG-020",
+      "recorded_on": "2025-06-12",
+      "author_role": "PM",
+      "note_text": "上次討論能清楚說明服務對象，但跨部門分工還需要再對齊。這是當時觀察，宜與現況核對。",
+      "source": "mock:pm_notes"
+    },
+    {
+      "note_id": "NOTE-009",
+      "organization_id": "ORG-025",
+      "recorded_on": "2025-06-21",
+      "author_role": "資深顧問",
+      "note_text": "對方提到想嘗試新做法，目前只有初步構想，尚無執行案例可供判斷。",
+      "source": "mock:line_summary"
+    },
+    {
+      "note_id": "NOTE-010",
+      "organization_id": "ORG-030",
+      "recorded_on": null,
+      "author_role": "PM",
+      "note_text": "組織窗口回覆具體，決策仍須回到內部會議；不要將窗口意願等同全組織承諾。",
+      "source": "mock:consultant_notes"
+    },
+    {
+      "note_id": "NOTE-011",
+      "organization_id": "ORG-034",
+      "recorded_on": "2025-12-22",
+      "author_role": "資深顧問",
+      "note_text": "團隊熟悉在地需求，資料整理較分散。建議先協助盤點，不宜僅以資料量評價組織。",
+      "source": "mock:pm_notes"
+    },
+    {
+      "note_id": "NOTE-012",
+      "organization_id": "ORG-039",
+      "recorded_on": "2025-09-17",
+      "author_role": "PM",
+      "note_text": "先前交流節奏順暢，但近期人員可能異動，需再次確認目前窗口與可投入時間。",
+      "source": "mock:line_summary"
+    },
+    {
+      "note_id": "NOTE-013",
+      "organization_id": "ORG-043",
+      "recorded_on": "2026-09-28",
+      "author_role": "資深顧問",
+      "note_text": "本次僅短暫接觸，對執行能力沒有足夠依據，暫不下判斷。",
+      "source": "mock:consultant_notes"
+    },
+    {
+      "note_id": "NOTE-014",
+      "organization_id": "ORG-047",
+      "recorded_on": "2025-05-27",
+      "author_role": "PM",
+      "note_text": "對方關心成效怎麼記錄，可能適合先做成果整理討論；實際參與意願待確認。",
+      "source": "mock:pm_notes"
+    },
+    {
+      "note_id": "NOTE-015",
+      "organization_id": "ORG-001",
+      "recorded_on": "2025-02-24",
+      "author_role": "資深顧問",
+      "note_text": "上次討論能清楚說明服務對象，但跨部門分工還需要再對齊。這是當時觀察，宜與現況核對。",
+      "source": "mock:line_summary"
+    },
+    {
+      "note_id": "NOTE-016",
+      "organization_id": "ORG-003",
+      "recorded_on": "2026-05-25",
+      "author_role": "PM",
+      "note_text": "對方提到想嘗試新做法，目前只有初步構想，尚無執行案例可供判斷。",
+      "source": "mock:consultant_notes"
+    },
+    {
+      "note_id": "NOTE-017",
+      "organization_id": "ORG-005",
+      "recorded_on": "2025-07-14",
+      "author_role": "資深顧問",
+      "note_text": "組織窗口回覆具體，決策仍須回到內部會議；不要將窗口意願等同全組織承諾。",
+      "source": "mock:pm_notes"
+    },
+    {
+      "note_id": "NOTE-018",
+      "organization_id": "ORG-008",
+      "recorded_on": "2024-09-02",
+      "author_role": "PM",
+      "note_text": "團隊熟悉在地需求，資料整理較分散。建議先協助盤點，不宜僅以資料量評價組織。",
+      "source": "mock:line_summary"
+    },
+    {
+      "note_id": "NOTE-019",
+      "organization_id": "ORG-011",
+      "recorded_on": null,
+      "author_role": "資深顧問",
+      "note_text": "先前交流節奏順暢，但近期人員可能異動，需再次確認目前窗口與可投入時間。",
+      "source": "mock:consultant_notes"
+    },
+    {
+      "note_id": "NOTE-020",
+      "organization_id": "ORG-013",
+      "recorded_on": "2025-11-25",
+      "author_role": "PM",
+      "note_text": "本次僅短暫接觸，對執行能力沒有足夠依據，暫不下判斷。",
+      "source": "mock:pm_notes"
+    }
+  ],
+  "task_cards": [
+    {
+      "task_id": "TASK-001",
+      "title": "為一個計畫找對的組織",
+      "scenario": "企業想用專業陪跑 10 家組織，PM 要把需求轉成條件，提出候選名單與理由。",
+      "user_role": "PM",
+      "questions": [
+        "哪些需求能對應到現有主檔欄位？",
+        "有哪些接觸紀錄或顧問觀察可佐證？",
+        "哪些條件沒有資料，必須另外確認？"
+      ],
+      "requested_organization_count": 10
+    },
+    {
+      "task_id": "TASK-002",
+      "title": "讓散落的資料變成好用的入口",
+      "scenario": "讓剛到職的 PM 接到電話時，30 秒就看懂這家組織。",
+      "user_role": "新到職 PM",
+      "questions": [
+        "這家組織關注什麼、服務誰、在哪裡？",
+        "最近有哪些接觸與留下的話？",
+        "顧問如何描述，觀察來自何時何處？"
+      ],
+      "requested_organization_count": null
+    }
+  ]
+}

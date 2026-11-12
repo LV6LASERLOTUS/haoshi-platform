@@ -1,0 +1,27 @@
+{
+  "request_id": "REQUEST-COACHING-DEMO-001",
+  "text": "企業提供資料整理與專案管理專業陪跑，預計招募 10 家組織。這個示範計畫的必要條件是組織區域在北部或中部指定縣市，偏好兒童或青少年教育相關、小型全職團隊。合作意願與可投入時間需要另行確認。",
+  "criteria": [
+    {
+      "field": "regions",
+      "operator": "any_of",
+      "value": ["臺北市", "新北市", "臺中市", "彰化縣"],
+      "required": true,
+      "weight": 1
+    },
+    {
+      "field": "issue_tags",
+      "operator": "any_of",
+      "value": ["兒童教育", "數位學習", "青少年培力"],
+      "required": false,
+      "weight": 1
+    },
+    {
+      "field": "full_time_staff_count",
+      "operator": "between",
+      "value": [0, 8],
+      "required": false,
+      "weight": 1
+    }
+  ]
+}
