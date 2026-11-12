@@ -5,7 +5,7 @@ import { useT } from '../../theme';
 /* Toast hook：回傳 show(msg) 與要渲染的 props */
 export function useToast() {
   const [msg, setMsg] = useState('');
-  const opacity = useRef(new Animated.Value(0)).current;
+  const [opacity] = useState(() => new Animated.Value(0));
   const timer = useRef(null);
 
   const show = useCallback((m) => {

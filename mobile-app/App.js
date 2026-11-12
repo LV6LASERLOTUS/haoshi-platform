@@ -1,6 +1,6 @@
 // 好事大平台｜AI 智慧媒合 — React Native (Expo) 版本
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View, SafeAreaView, StatusBar, Animated, Easing, BackHandler, Keyboard,
   useColorScheme, useWindowDimensions,
@@ -34,10 +34,10 @@ export default function App() {
 
   // 頁面轉場：0 = 搜尋頁，1 = 結果頁
   const [page, setPage] = useState('search');
-  const pageTransition = useRef(new Animated.Value(0)).current;
+  const [pageTransition] = useState(() => new Animated.Value(0));
   const { show: showToast, msg: toastMessage, opacity: toastOpacity } = useToast();
 
-  const navigateTo = (targetPage) => {
+  const navigateTo = useCallback((targetPage) => {
     setPage(targetPage);
     Animated.timing(pageTransition, {
       toValue: targetPage === 'results' ? 1 : 0,
@@ -45,7 +45,7 @@ export default function App() {
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-  };
+  }, [pageTransition]);
 
   // Android 實體返回鍵：結果頁時回到搜尋頁
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function App() {
       return false;
     });
     return () => backHandlerSubscription.remove();
-  }, [page]);
+  }, [page, navigateTo]);
 
   const runSearch = (searchText = query) => {
     const trimmedQuery = searchText.trim();

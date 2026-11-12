@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, Animated } from 'react-native';
 import { useT } from '../theme';
 import { AVATARS } from '../data/orgs';
@@ -15,8 +15,8 @@ export default function ResultCard({ o, i, top, saved, onSave, toast }) {
   const c = useT();
   const [open, setOpen] = useState(false);
   const [fb, setFb] = useState(false);
-  const fade = useRef(new Animated.Value(0)).current;
-  useEffect(() => { Animated.timing(fade, { toValue: 1, duration: 350, delay: i * 70, useNativeDriver: true }).start(); }, []);
+  const [fade] = useState(() => new Animated.Value(0));
+  useEffect(() => { Animated.timing(fade, { toValue: 1, duration: 350, delay: i * 70, useNativeDriver: true }).start(); }, [fade, i]);
   return (
     <Animated.View style={{ opacity: fade, marginBottom: 16, transform: [{ translateY: fade.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }] }}>
       <Pop r={22} bg={top ? c.primarySoft : c.surface}>
