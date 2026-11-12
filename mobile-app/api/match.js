@@ -1,8 +1,8 @@
 // 後端媒合 API：負責網路請求，並把後端回傳格式轉成 ResultCard 使用的格式
 import { Platform } from 'react-native';
 
-// 可在 .env 設定 EXPO_PUBLIC_API_BASE 覆寫（實體手機請填電腦的區網 IP，例如 http://192.168.1.10:8000）
-// 預設值：iOS 模擬器 / 網頁 → localhost；Android 模擬器 → 10.0.2.2
+// 在 mobile-app/.env 設定 EXPO_PUBLIC_API_BASE（實體手機請填電腦的區網 IP，見 .env.example）
+// 未設定時的預設值：iOS 模擬器 / 網頁 → localhost；Android 模擬器 → 10.0.2.2
 export const API_BASE =
   process.env.EXPO_PUBLIC_API_BASE ??
   (Platform.OS === 'android' ? 'http://10.0.2.2:8000' : 'http://localhost:8000');

@@ -98,7 +98,7 @@ uv add fastapi uvicorn paddleocr paddlepaddle sentence-transformers gspread pand
 
 4. 啟動 FastAPI 後端伺服器：
 ```bash
-uvicorn main:app --reload
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 * 伺服器將在 `http://127.0.0.1:8000` 啟動。
@@ -119,10 +119,28 @@ npm install
 npx expo install expo-image-picker
 ```
 
-3. **設定 API 端點（使用實體裝置時必要）：**
-   * 開啟 `App.js`，找到 `fetch` 的 URL。
-   * 若使用 **iOS 模擬器**，保持 `http://127.0.0.1:8000/api/v1/match` 不變。
-   * 若使用 **實體裝置（透過 Expo Go）**，請將 `127.0.0.1` 替換為您電腦的本機網路 IP 位址（例如：`http://192.168.1.15:8000/api/v1/match`）。
+3. **設定 API 端點（⚠️ 必要，請改成您自己的電腦 IP）：**
+
+> [!IMPORTANT]
+> App 透過 `mobile-app/.env` 中的 `EXPO_PUBLIC_API_BASE` 連線到後端。
+> 使用**實體手機（Expo Go）**時，**請務必填入您自己電腦的區網 IP**，否則 App 會連不到後端，送出需求後會逾時或失敗。
+> `.env` 已列入 `.gitignore`，每位開發者各自設定，不會被 commit。
+
+   * 從範本建立 `.env`：
+     ```bash
+     cp .env.example .env
+     ```
+   * 查詢您電腦的區網 IP：
+     * **Mac：** `ipconfig getifaddr en0`
+     * **Windows：** `ipconfig`（找「IPv4 位址」）
+     * **Linux：** `hostname -I`
+   * 編輯 `mobile-app/.env`，將 `192.168.x.x` 替換為您的 IP：
+     ```bash
+     EXPO_PUBLIC_API_BASE=http://<您的電腦IP>:8000
+     ```
+   * 修改 `.env` 後需**重新啟動** `npx expo start` 才會生效。
+   * 若未建立 `.env`，則使用預設值：iOS 模擬器／網頁 → `http://localhost:8000`；Android 模擬器 → `http://10.0.2.2:8000`。
+   * 手機與電腦必須連在**同一個 Wi-Fi 網路**，且後端需以 `--host 0.0.0.0` 啟動（見步驟一）。
 
 4. 啟動 Expo 開發伺服器：
 ```bash

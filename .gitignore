@@ -15,6 +15,7 @@ huggingface/
 # Environment variables or local credentials
 backend/.env
 backend/credentials.json
+mobile-app/.env
 
 # --- Node.js / React Native Mobile App ---
 mobile-app/node_modules/
