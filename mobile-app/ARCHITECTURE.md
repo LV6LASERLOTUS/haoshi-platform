@@ -12,6 +12,9 @@ mobile-app/
 ├── App.js                    # Root: theme, search state, page transition, ⭐ API call
 ├── theme.js                  # LIGHT / DARK palettes + ThemeCtx + useT() hook
 │
+├── api/
+│   └── match.js              # ⭐ fetchMatches(): POST /api/v1/match + backend → card mapping
+│
 ├── data/
 │   └── orgs.js               # Mock orgs + static option lists + mock score()
 │
@@ -42,7 +45,7 @@ mobile-app/
         └── Toast.js          # <Toast> + useToast() hook for short messages
 ```
 
-> `components/CandidateCard.js`, `SearchBar.js`, `EmailActionToolbar.js` are **legacy** (from the old App.js) and are not used anymore.
+> `components/CandidateCard.js`, `SearchBar.js`, `EmailActionToolbar.js` and `template.js` (legacy) have been removed.
 
 ---
 
@@ -67,6 +70,9 @@ flowchart LR
 ---
 
 ## 3. ⭐ Where to Add the Backend Request
+
+> [!NOTE]
+> ✅ **Done.** `runSearch()` in [App.js](./App.js) now calls `fetchMatches()` from [api/match.js](./api/match.js). The backend URL defaults to `localhost:8000` (iOS / web) or `10.0.2.2:8000` (Android emulator); set `EXPO_PUBLIC_API_BASE` in `.env` to override (e.g. your computer's LAN IP for a physical phone). The code below is the original plan, kept for reference.
 
 **Only one place needs to change:** the `setTimeout(...)` block inside `run()` in [App.js](./App.js).
 
