@@ -8,9 +8,11 @@ import {
 
 import { LIGHT, DARK, ThemeCtx } from './theme';
 import { fetchMatches } from './api/match';
+import { submitFeedback, makeQuestionId } from './api/feedback';
 import SearchScreen from './screens/SearchScreen';
 import ResultsScreen from './screens/ResultsScreen';
 import Toast, { useToast } from './components/ui/Toast';
+import FeedbackSheet from './components/FeedbackSheet';
 
 /* ───────────── 主畫面：兩頁 + 滑動轉場 ───────────── */
 export default function App() {
@@ -31,6 +33,12 @@ export default function App() {
   const [submittedQuery, setSubmittedQuery] = useState('');
   const [searchId, setSearchId] = useState(0); // 每次新搜尋重置結果頁（排序、收藏）
   const latestSearchId = useRef(0); // 忽略較舊搜尋的延遲回應
+  const [questionId, setQuestionId] = useState(''); // 回饋用的問題 ID（每次搜尋一個）
+
+  // 回饋修正面板：要回饋的那一筆推薦（關閉時保留資料，避免滑出動畫時內容變空白）
+  const [feedbackOrg, setFeedbackOrg] = useState(null);
+  const [feedbackVisible, setFeedbackVisible] = useState(false);
+  const openFeedback = useCallback((org) => { setFeedbackOrg(org); setFeedbackVisible(true); }, []);
 
   // 頁面轉場：0 = 搜尋頁，1 = 結果頁
   const [page, setPage] = useState('search');
@@ -67,6 +75,8 @@ export default function App() {
 
     setSubmittedQuery(requestText);
     setSearchId(currentSearchId);
+    setQuestionId(makeQuestionId(currentSearchId));
+    setFeedbackVisible(false);
     setLoading(true);
     setResults(null);
     navigateTo('results');
@@ -108,10 +118,20 @@ export default function App() {
             <ResultsScreen
               key={searchId}
               query={submittedQuery} loading={loading} res={results}
-              onBack={() => navigateTo('search')} toast={showToast}
+              onBack={() => navigateTo('search')} onFeedback={openFeedback} toast={showToast}
             />
           </Animated.View>
         </View>
+
+        <FeedbackSheet
+          visible={feedbackVisible}
+          onClose={() => setFeedbackVisible(false)}
+          theme={theme}
+          questionId={questionId}
+          questionText={submittedQuery}
+          aiSummary={feedbackOrg?.why ?? ''}
+          onSubmit={submitFeedback}
+        />
 
         <Toast msg={toastMessage} opacity={toastOpacity} bottom={page === 'results' ? 100 : 40} />
       </SafeAreaView>

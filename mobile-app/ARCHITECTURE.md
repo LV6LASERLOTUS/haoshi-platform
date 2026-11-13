@@ -9,11 +9,12 @@ This doc explains what each file does, how data moves through the app, and **whe
 ```
 mobile-app/
 ├── index.js                  # Expo entry point; registers App
-├── App.js                    # Root: theme, search state, page transition, ⭐ API call
+├── App.js                    # Root: theme, search state, page transition, ⭐ API call, FeedbackSheet host
 ├── theme.js                  # LIGHT / DARK palettes + ThemeCtx + useT() hook
 │
 ├── api/
-│   └── match.js              # ⭐ fetchMatches(): POST /api/v1/match + backend → card mapping
+│   ├── match.js              # ⭐ fetchMatches(): POST /api/v1/match + backend → card mapping
+│   └── feedback.js           # ⭐ submitFeedback() (placeholder, no backend yet) + makeQuestionId()
 │
 ├── data/
 │   └── orgs.js               # Mock orgs + static option lists + mock score()
@@ -28,11 +29,12 @@ mobile-app/
     ├── RequestInput.js       # Text box, 🖼/📎 buttons, advanced filters, 開始媒合
     ├── ResultsHeader.js      # "找到 N 個推薦單位" + sort switch
     ├── ResultCard.js         # ⭐ One recommended org (renders the result data)
+    ├── FeedbackSheet.js      # 💬 回饋修正 bottom-sheet modal (rating, type, comment)
     ├── SavedBar.js           # Bottom bar shown when ≥1 org is saved
     │
     ├── art/
     │   ├── Logo.js           # SVG logo (3 squares)
-    │   └── HeroArt.js        # SVG hero illustration
+    │   └── HeroArt.js        # Hero illustration (renders assets/custom_art.png)
     │
     └── ui/                   # Reusable, data-agnostic primitives
         ├── Pop.js            # Cartoon box with a solid offset "hard shadow"
@@ -59,6 +61,9 @@ flowchart LR
     D -- "top_matches" --> B
     B -- "res = [org, ...]" --> C
     C -- "o (one org)" --> E["ResultCard"]
+    E -- "onFeedback(o)" --> B
+    B -- "visible, questionId,<br/>questionText, aiSummary" --> F["FeedbackSheet"]
+    F -- "onSubmit(payload)" --> G["api/feedback.js<br/>submitFeedback()"]
 ```
 
 1. User types / picks chips on **SearchScreen**. State (`q`, `cat`, `area`, `budget`) lives in **App.js**.
@@ -66,6 +71,7 @@ flowchart LR
 3. `run()` immediately slides to **ResultsScreen** with `loading = true` (skeletons show).
 4. When data arrives, `run()` calls `setRes(list)` and `setLoading(false)`.
 5. **ResultsScreen** sorts the list and renders one **ResultCard** per org.
+6. Tapping **💬 回饋修正** on a card calls `onFeedback(o)` → `openFeedback(o)` in **App.js**, which opens the single app-level **FeedbackSheet** for that org (see section 4.1).
 
 ---
 
@@ -193,9 +199,43 @@ Other card actions that are still placeholders (they show a toast):
 | Action | File | What to connect |
 |---|---|---|
 | 聯絡此單位 | `ResultCard.js` | `Linking.openURL('mailto:' + o.email)` or a contact page |
-| 💬 回饋修正 chips | `ResultCard.js` | POST feedback (`org id`, `reason`, `query`) to the backend |
+| 💬 回饋修正 submit | `api/feedback.js` → `submitFeedback()` | Currently logs + resolves after 400 ms. Replace with `POST /api/v1/feedback` (see 4.1) |
 | 比較已收藏 | `ResultsScreen.js` → `SavedBar` | Compare screen / export |
 | 🖼 照片 / 📎 檔案 | `RequestInput.js` | `expo-image-picker` / `expo-document-picker`, then pass `file` to `fetchMatches` |
+
+### 4.1 💬 Feedback (FeedbackSheet)
+
+The old inline feedback chips in `ResultCard` were replaced by `components/FeedbackSheet.js`, a bottom-sheet `Modal`. There is **one instance, rendered in `App.js`** (outside the page transition, next to `<Toast>`), so it overlays the whole app.
+
+State in **App.js**:
+
+| State | Purpose |
+|---|---|
+| `feedbackOrg` | The org being reviewed. Kept after close so the content doesn't blank out during the slide-out animation |
+| `feedbackVisible` | Sheet open / closed. Reset to `false` on every new search |
+| `questionId` | Generated per search with `makeQuestionId(searchId)` → `Q-YYYYMMDD-NNNN` |
+
+Props passed: `theme={theme}`, `questionId`, `questionText={submittedQuery}`, `aiSummary={feedbackOrg.why}`, `onSubmit={submitFeedback}`.
+
+The sheet resets its form each time `visible` goes `true`. If `onSubmit` throws, it shows 「送出失敗，請稍後再試一次」; if it resolves, it shows the thank-you screen (plus a JSON preview of the payload in `__DEV__`).
+
+Submitted payload:
+
+```json
+{
+  "question_id": "Q-20261113-0042",
+  "question_text": "…",
+  "ai_summary": "…",
+  "rating": 4,
+  "feedback_type": "推薦與需求不符",
+  "feedback_content": "…"
+}
+```
+
+`feedback_type` is one of: 推薦符合需求, 推薦與需求不符, 組織資訊有誤, 缺少關鍵資訊, 推薦理由不充分, 資料已過時, 其他建議 (`feedback_content` is required only for 其他建議).
+
+> [!WARNING]
+> The backend has no feedback endpoint yet, so `submitFeedback()` is a placeholder that always succeeds. The payload also has **no org identifier**. When you add `POST /api/v1/feedback`, consider sending `org name / id` too (`feedbackOrg.n`). `questionId` is client-generated and restarts at `0001` when the app relaunches, so it's not globally unique. Ideally the backend returns a `question_id` from `/api/v1/match`.
 
 ---
 
@@ -206,7 +246,7 @@ Other card actions that are still placeholders (they show a toast):
 | File | Props | Notes |
 |---|---|---|
 | `SearchScreen` | `q, setQ, cat, setCat, area, setArea, budget, setBudget, onRun, onToggleTheme, toast` | Stateless; all search state is owned by App |
-| `ResultsScreen` | `query, loading, res, onBack, toast` | Owns `sort` + `saved`. Remounted on each new search (`key={runId}`), which resets both |
+| `ResultsScreen` | `query, loading, res, onBack, onFeedback, toast` | Owns `sort` + `saved`. Remounted on each new search (`key={searchId}`), which resets both. `onFeedback(o)` is forwarded to each card |
 
 ### Feature components
 
@@ -216,7 +256,8 @@ Other card actions that are still placeholders (they show a toast):
 | `Hero` | — | Static content (badges in `BADGES` const) |
 | `RequestInput` | `value, onChangeText, area, onAreaChange, budget, onBudgetChange, onSubmit, toast` | Owns focus + advanced-panel open state |
 | `ResultsHeader` | `count, sort, onSortChange` | Sort options from `SORTS` in `data/orgs.js` |
-| `ResultCard` | `o, i, top, saved, onSave, toast` | `i` = index (badge #, avatar color, fade-in delay); `top` = highlight as 最推薦 |
+| `ResultCard` | `o, i, top, saved, onSave, onFeedback, toast` | `i` = index (badge #, avatar color, fade-in delay); `top` = highlight as 最推薦; `onFeedback` fires from 💬 回饋修正 |
+| `FeedbackSheet` | `visible, onClose, theme, questionId, questionText, aiSummary, onSubmit, showDevPreview` | Rendered once in `App.js`. Takes `theme` as a prop instead of `useT()`. Defines its own local `Pop` (not `ui/Pop`). `showDevPreview` defaults to `__DEV__` |
 | `SavedBar` | `count, onCompare` | Absolutely positioned at bottom |
 
 ### UI primitives (`components/ui/`)
@@ -236,6 +277,6 @@ Other card actions that are still placeholders (they show a toast):
 
 ## 6. Conventions
 
-- **Theme:** every component calls `const c = useT()` and uses `c.ink`, `c.surface`, `c.primary`, etc. Never hard-code colors that should change in dark mode. Add new colors to both `LIGHT` and `DARK` in `theme.js`.
+- **Theme:** every component calls `const c = useT()` (exception: `FeedbackSheet` receives `theme` as a prop) and uses `c.ink`, `c.surface`, `c.primary`, etc. Never hard-code colors that should change in dark mode. Add new colors to both `LIGHT` and `DARK` in `theme.js`.
 - **Navigation:** a simple 2-page slide in `App.js` (`page` state + `nav` Animated value). The Android back button is handled with `BackHandler`. If the app grows beyond 2–3 screens, migrate to Expo Router (see `AGENTS.md`).
 - **Styling:** inline styles, matching the original template. Reuse `Pop` / `PopBtn` / `Chip` to keep the cartoon look consistent.

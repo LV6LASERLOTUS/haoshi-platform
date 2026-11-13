@@ -4,17 +4,13 @@ import { useT } from '../theme';
 import { AVATARS } from '../data/orgs';
 import Pop from './ui/Pop';
 import PopBtn from './ui/PopBtn';
-import Chip from './ui/Chip';
 import Ring from './ui/Ring';
 import { Row } from './ui/Layout';
 
-const FEEDBACK = ['領域不符', '地區太遠', '預算不合', '規模不對', '其他'];
-
 /* ───────────── 結果卡片 ───────────── */
-export default function ResultCard({ o, i, top, saved, onSave, toast }) {
+export default function ResultCard({ o, i, top, saved, onSave, onFeedback, toast }) {
   const c = useT();
   const [open, setOpen] = useState(false);
-  const [fb, setFb] = useState(false);
   const [fade] = useState(() => new Animated.Value(0));
   useEffect(() => { Animated.timing(fade, { toValue: 1, duration: 350, delay: i * 70, useNativeDriver: true }).start(); }, [fade, i]);
   return (
@@ -69,20 +65,9 @@ export default function ResultCard({ o, i, top, saved, onSave, toast }) {
             <PopBtn onPress={() => setOpen(!open)}>{open ? '收合' : '比對細節'}</PopBtn>
           </View>
 
-          <Pressable onPress={() => setFb(!fb)} style={{ alignSelf: 'flex-end', paddingVertical: 8 }}>
+          <Pressable onPress={onFeedback} accessibilityRole="button" style={{ alignSelf: 'flex-end', paddingVertical: 8 }}>
             <Text style={{ color: c.muted, fontSize: 13, textDecorationLine: 'underline' }}>💬 回饋修正</Text>
           </Pressable>
-
-          {fb && (
-            <View style={{ padding: 12, borderWidth: 1.5, borderStyle: 'dashed', borderColor: c.line, borderRadius: 12 }}>
-              <Text style={{ color: c.muted, fontSize: 13, marginBottom: 8 }}>哪裡不太對？選擇後我們會重新調整推薦</Text>
-              <Row>
-                {FEEDBACK.map((x) => (
-                  <Chip key={x} label={x} onPress={() => { setFb(false); toast(`謝謝回饋，已記錄「${x}」`); }} />
-                ))}
-              </Row>
-            </View>
-          )}
         </View>
       </Pop>
     </Animated.View>
