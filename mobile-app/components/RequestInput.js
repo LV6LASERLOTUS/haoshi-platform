@@ -27,13 +27,25 @@ export default function RequestInput({ value, onChangeText, area, onAreaChange, 
         placeholderTextColor={c.muted}
         style={{ color: c.ink, fontSize: 16, minHeight: 96, padding: 16, paddingBottom: 4, textAlignVertical: 'top', lineHeight: 24 }}
       />
-      <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8, padding: 12 }}>
-        {tools.map(([t, fn, on]) => (
-          <Pressable key={t} onPress={fn} style={{ backgroundColor: on ? c.primarySoft : c.bg, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 7 }}>
-            <Text style={{ color: on ? c.primary : c.muted, fontSize: 14 }}>{t}</Text>
-          </Pressable>
-        ))}
-        <PopBtn style={{ marginLeft: 'auto' }} bg={c.primary} color={c.primaryInk} bold r={14} onPress={onSubmit}>開始媒合</PopBtn>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: 12 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexShrink: 1 }}>
+          {tools.map(([t, fn, on]) => (
+            <Pressable
+              key={t}
+              onPress={fn}
+              style={{
+                backgroundColor: on ? c.primarySoft : c.bg,
+                borderRadius: 10,
+                paddingHorizontal: 10,
+                paddingVertical: 9,
+                marginBottom: 2,
+              }}
+            >
+              <Text style={{ color: on ? c.primary : c.muted, fontSize: 13, fontWeight: '500' }}>{t}</Text>
+            </Pressable>
+          ))}
+        </View>
+        <PopBtn bg={c.primary} color={c.primaryInk} bold r={14} onPress={onSubmit}>開始媒合</PopBtn>
       </View>
       {adv && (
         <View style={{ paddingHorizontal: 12, paddingBottom: 12 }}>
