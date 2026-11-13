@@ -8,7 +8,7 @@ import Skeleton from '../components/ui/Skeleton';
 import BackButton from '../components/ui/BackButton';
 
 /* ───────────── 第二頁：媒合結果 ───────────── */
-export default function ResultsScreen({ query, loading, res, onBack, toast }) {
+export default function ResultsScreen({ query, loading, res, onBack, onFeedback, toast }) {
   const c = useT();
   const [sort, setSort] = useState('match');
   const [saved, setSaved] = useState({});
@@ -46,7 +46,7 @@ export default function ResultsScreen({ query, loading, res, onBack, toast }) {
             <ResultsHeader count={list.length} sort={sort} onSortChange={setSort} />
             {list.map((o, i) => (
               <ResultCard key={o.n} o={o} i={i} top={i === 0 && sort === 'match'} saved={!!saved[o.n]}
-                onSave={() => toggleSave(o.n)} toast={toast} />
+                onSave={() => toggleSave(o.n)} onFeedback={() => onFeedback?.(o)} toast={toast} />
             ))}
           </>
         )}
