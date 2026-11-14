@@ -7,7 +7,11 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.soyboy.mobileapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -19,6 +23,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a6b26bcc-8a59-4cb8-8fcd-5350c37698fe"
+      }
+    },
+    "owner": "soyboy",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a6b26bcc-8a59-4cb8-8fcd-5350c37698fe"
     }
   }
 }
