@@ -51,3 +51,26 @@ def test_match_endpoint_text_only():
     assert "npo_name" in top_match
     assert "match_score" in top_match
     assert "reason" in top_match
+
+
+def test_feedback_endpoint(monkeypatch):
+    """測試 POST /api/v1/feedback 端點。"""
+    monkeypatch.setattr("main.save_feedback_to_sheet", lambda payload: True)
+
+    payload = {
+        "question_id": "Q-20261113-0042",
+        "question_text": "尋找偏鄉兒童教育資源",
+        "ai_summary": "過去已舉辦 5 次偏鄉科技營隊，與您的需求領域高度契合。",
+        "rating": 5,
+        "feedback_type": "推薦符合需求",
+        "feedback_content": "推薦結果非常符合我們的需求！",
+    }
+
+    response = client.post("/api/v1/feedback", json=payload)
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "success"
+    assert data["saved_to_sheet"] is True
+    assert data["feedback"] == payload
+
