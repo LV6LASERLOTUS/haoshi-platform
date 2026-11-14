@@ -2,6 +2,19 @@ from typing import Optional
 
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
+
+from database import save_feedback_to_sheet
+
+
+class FeedbackRequest(BaseModel):
+    question_id: str
+    question_text: str
+    ai_summary: str
+    rating: int = Field(..., ge=1, le=5)
+    feedback_type: str
+    feedback_content: Optional[str] = ""
+
 
 app = FastAPI(
     title="好事大平台 API",
@@ -77,3 +90,15 @@ async def handle_match_request(
         "processed_query": request_text,
         "top_matches": MOCK_MATCHES,
     }
+
+
+@app.post("/api/v1/feedback")
+async def handle_feedback_request(feedback: FeedbackRequest):
+    payload = feedback.model_dump()
+    saved = save_feedback_to_sheet(payload)
+    return {
+        "status": "success",
+        "saved_to_sheet": saved,
+        "feedback": payload,
+    }
+
