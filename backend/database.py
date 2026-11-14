@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 
 import gspread
@@ -41,7 +42,6 @@ def load_npos_from_sheet() -> dict[str, Worksheet]:
 load_npos_from_sheets = load_npos_from_sheet
 
 
-
 def save_feedback_to_sheet(feedback_data: dict) -> bool:
     """
     將使用者回饋寫入 Google Sheets 指定工作表。
@@ -71,3 +71,57 @@ def save_feedback_to_sheet(feedback_data: dict) -> bool:
             f"Warning: Could not write feedback to sheet '{FEEDBACK_WORKSHEET_NAME}': {e}"
         )
         return False
+
+
+def query_ngo(ngo_name: str) -> dict:
+    """傳送 NGO 名稱至 NGO_Search的B2，並取回試算表計算後的相關資料"""
+    print(f"正在查詢 NGO：{ngo_name}...")
+    client: Client = gspread.service_account(filename=CREDENTIALS_PATH)
+    spreadsheet: Spreadsheet = client.open_by_url(FEEDBACK_SHEET_URL)
+    worksheet: Worksheet = spreadsheet.worksheet("NGO_search")
+    worksheet.update([[ngo_name]], "B2")
+
+    # 短暫暫停 0.5 ~ 1 秒，確保雲端公式重新計算完成
+    time.sleep(1)
+
+    # 批次讀取 B2 至 B22 的最新數值
+    result_values = worksheet.get("B2:B22")
+
+    # NGO_Search 結果的欄位row號
+    mapping = {
+        "ngo_name": 2,
+        "organization_id": 3,
+        "service_domain": 4,
+        "region": 5,
+        "contact_count": 6,
+        "latest_contact_date": 7,
+        "consultant_notes": 9,
+        "cooperation_hint": 10,
+        "verification_status": 11,
+        "ngo_overview": 15,
+        "contact_history_summary": 18,
+        "ai_analysis_input": 20,
+        "ai_analysis_output": 22,
+    }
+
+    data = {}
+    for key, row_num in mapping.items():
+        idx = row_num - 2
+        # 避免因空白列產生長度不足的問題，安全讀取輔助函式
+        if idx < len(result_values) and result_values[idx]:
+            data[key] = result_values[idx][0]
+        else:
+            data[key] = ""
+
+    return data
+
+
+# if __name__ == "__main__":
+#     target_ngo = "共好行動組織01"
+#     result = query_ngo(target_ngo)
+
+#     print("\n--- 查詢結果 ---")
+#     print(f"組織 ID: {result['organization_id']}")
+#     print(f"服務領域: {result['service_domain']}")
+#     print(f"接觸次數: {result['contact_count']}")
+#     print(f"\nAI 分析輸出：\n{result['ai_analysis_output']}")
