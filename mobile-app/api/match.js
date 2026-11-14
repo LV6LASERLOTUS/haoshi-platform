@@ -1,11 +1,17 @@
 // 後端媒合 API：負責網路請求，並把後端回傳格式轉成 ResultCard 使用的格式
+import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
-// 在 mobile-app/.env 設定 EXPO_PUBLIC_API_BASE（實體手機請填電腦的區網 IP，見 .env.example）
-// 未設定時的預設值：iOS 模擬器 / 網頁 → localhost；Android 模擬器 → 10.0.2.2
-export const API_BASE =
-  process.env.EXPO_PUBLIC_API_BASE ??
-  (Platform.OS === 'android' ? 'http://10.0.2.2:8000' : 'http://localhost:8000');
+function getDefaultApiBase() {
+  const host = Constants.expoConfig?.hostUri?.split(':')[0];
+  if (host) return `http://${host}:8000`;
+  return Platform.OS === 'android' ? 'http://10.0.2.2:8000' : 'http://localhost:8000';
+}
+
+// 在 mobile-app/.env 設定 EXPO_PUBLIC_API_BASE 可覆蓋預設值
+// 未設定時：優先從 Expo dev server (Constants.expoConfig?.hostUri) 取得開發機 IP，
+// 否則 fallback 到 Android 模擬器 10.0.2.2 或 localhost
+export const API_BASE = process.env.EXPO_PUBLIC_API_BASE || getDefaultApiBase();
 
 const REQUEST_TIMEOUT_MS = 20000;
 
