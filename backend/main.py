@@ -1,10 +1,16 @@
+import torch
 from typing import Optional
 
-from fastapi import FastAPI, File, Form, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from database import save_feedback_to_sheet
+from database import load_recommendation_snapshot, save_feedback_to_sheet
+from recommendation.demand import build_plan
+from recommendation.evidence import DataSourceError
+from recommendation.schemas import Demand, Plan, RecommendationResponse
+from recommendation.scoring import SemanticUnavailableError
+from recommendation.service import recommend
 
 
 class FeedbackRequest(BaseModel):
@@ -101,4 +107,22 @@ async def handle_feedback_request(feedback: FeedbackRequest):
         "saved_to_sheet": saved,
         "feedback": payload,
     }
+
+
+@app.post("/api/v1/recommendations/plan", response_model=Plan)
+def preview_recommendation_plan(demand: Demand):
+    """預覽啟用構面、權重與待澄清問題，不讀表也不載入模型。"""
+    return build_plan(demand)
+
+
+@app.post("/api/v1/recommendations", response_model=RecommendationResponse)
+def generate_recommendations(demand: Demand):
+    """後端 V1 JSON 契約：0–100 指數；舊前端 /match 契約暫時保留。"""
+    plan = build_plan(demand)
+    if plan.clarification_questions:
+        return RecommendationResponse(status="needs_clarification", plan=plan, warnings=plan.warnings)
+    try:
+        return recommend(demand, load_recommendation_snapshot())
+    except (DataSourceError, SemanticUnavailableError) as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
 

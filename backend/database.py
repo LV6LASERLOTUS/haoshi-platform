@@ -41,6 +41,29 @@ def load_npos_from_sheet() -> dict[str, Worksheet]:
 load_npos_from_sheets = load_npos_from_sheet
 
 
+def load_recommendation_snapshot():
+    """讀取推薦所需原始欄位與來源表；連線失敗不回退到 mock。"""
+    from datetime import datetime, timezone
+
+    from google.auth.exceptions import GoogleAuthError
+    from requests.exceptions import RequestException
+
+    from recommendation.evidence import DataSourceError, build_snapshot
+
+    try:
+        sheets = load_npos_from_sheet()
+        names = ("NPO_dim", "②接觸紀錄", "③顧問筆記")
+        if any(name not in sheets for name in names):
+            raise DataSourceError("無法取得完整推薦資料；請確認憑證、權限與工作表名稱。")
+        tables = {name: sheets[name].get_all_values() for name in names}
+        return build_snapshot(
+            tables, {name: sheets[name].id for name in names}, FEEDBACK_SHEET_URL,
+            datetime.now(timezone.utc).isoformat(),
+        )
+    except (gspread.exceptions.GSpreadException, GoogleAuthError, RequestException, OSError, ValueError) as exc:
+        raise DataSourceError("Google Sheets 推薦資料讀取失敗；未產生模擬推薦。") from exc
+
+
 
 def save_feedback_to_sheet(feedback_data: dict) -> bool:
     """
