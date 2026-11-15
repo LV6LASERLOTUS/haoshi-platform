@@ -12,6 +12,8 @@
 - 使用既有 `BAAI/bge-small-zh-v1.5`，不訓練新模型。
 - 新端點 `POST /api/v1/recommendations/plan` 預覽規則；不讀表、不載入模型。
 - 新端點 `POST /api/v1/recommendations` 讀取真實 Sheets，執行新流程。
+- 與 main 整合時保留舊版 `from recommendation import recommend`、`python -m recommendation` 與 `build_evidence()` 契約；新版使用 `recommendation.service.recommend`、`recommendation_cli.py` 與 `build_snapshot()`。兩套入口不互相替換，既有呼叫端不用猜測參數型別。
+- main 的 `evaluate_and_summarize_ngos()`、`query_ngo()` 與 `NPO_feedback` 設定保留。新推薦流程不會自動呼叫 OpenAI 摘要，也不會呼叫會寫入搜尋儲存格的 `query_ngo()`。
 - 舊 `POST /api/v1/match` 仍是原本 mock 契約，供既有前端使用；本次沒有接前端。不要用它驗證 V1。
 - 新端點供本機／平台內部驗證，回應可能包含內部筆記原文；對企業公開之前需實作原文的角色權限。
 - 來源失敗或 BGE 無法使用時回傳 503，不用假 NGO 或規則分數冒充 BGE。

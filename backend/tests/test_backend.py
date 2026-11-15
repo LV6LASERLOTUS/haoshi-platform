@@ -1,6 +1,8 @@
+import json
+
 from fastapi.testclient import TestClient
 
-from ai_engine import calculate_match_score
+from ai_engine import calculate_match_score, evaluate_and_summarize_ngos
 from main import app
 
 # 初始化 FastAPI TestClient
@@ -73,4 +75,54 @@ def test_feedback_endpoint(monkeypatch):
     assert data["status"] == "success"
     assert data["saved_to_sheet"] is True
     assert data["feedback"] == payload
+
+
+def test_evaluate_and_summarize_ngos(monkeypatch):
+    """測試綜合評估前 5 名 NGO 並產生 AI 摘要的函式。"""
+    mock_llm_output = {
+        "top_recommendations": [
+            {
+                "rank": 1,
+                "npo_name": "彰化偏鄉數位教育協會",
+                "match_score": 0.95,
+                "reason": "深耕中部偏鄉且過往合作紀錄良好。",
+            },
+            {
+                "rank": 2,
+                "npo_name": "台灣綠能永續發展基金會",
+                "match_score": 0.85,
+                "reason": "具備豐富校園講座經驗。",
+            },
+        ],
+        "ai_summary": "綜合 Google 試算表最新接觸紀錄與過往回饋偏好，優先推薦在地執行力強且互動率高的組織。",
+    }
+
+    class DummyResponse:
+        def raise_for_status(self):
+            pass
+
+        def json(self):
+            return {
+                "choices": [
+                    {"message": {"content": json.dumps(mock_llm_output)}}
+                ]
+            }
+
+    monkeypatch.setattr("ai_engine._load_openai_api_key", lambda: "sk-test-key")
+    monkeypatch.setattr(
+        "ai_engine.httpx.post", lambda *args, **kwargs: DummyResponse()
+    )
+
+    result = evaluate_and_summarize_ngos(
+        top_5_ngos="1. 彰化偏鄉數位教育協會 2. 台灣綠能永續發展基金會",
+        google_data="彰化偏鄉數位教育協會：近期接觸 5 次，核實狀態通過",
+        feedback_skill="優先推薦核實通過且近期有實際活動紀錄的在地 NGO",
+    )
+
+    assert "top_recommendations" in result
+    assert "ai_summary" in result
+    assert len(result["top_recommendations"]) == 2
+    assert result["top_recommendations"][0]["npo_name"] == "彰化偏鄉數位教育協會"
+    assert "綜合 Google 試算表" in result["ai_summary"]
+
 

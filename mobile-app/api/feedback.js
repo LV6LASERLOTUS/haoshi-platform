@@ -1,8 +1,17 @@
 // 回饋修正 API：FeedbackSheet 送出時呼叫
 // payload 形狀：{ question_id, question_text, ai_summary, rating, feedback_type, feedback_content }
-import { API_BASE } from './match';
+import Constants from 'expo-constants';
+import { Platform } from 'react-native';
 
 // 丟出錯誤時，FeedbackSheet 會顯示「送出失敗，請稍後再試一次」。
+function getDefaultApiBase() {
+  const host = Constants.expoConfig?.hostUri?.split(':')[0];
+  if (host) return `http://${host}:8000`;
+  return Platform.OS === 'android' ? 'http://10.0.2.2:8000' : 'http://localhost:8000';
+}
+
+export const API_BASE = process.env.EXPO_PUBLIC_API_BASE || getDefaultApiBase();
+
 export async function submitFeedback(payload) {
   if (typeof __DEV__ !== 'undefined' && __DEV__) console.log('[feedback]', payload);
   const response = await fetch(`${API_BASE}/api/v1/feedback`, {
