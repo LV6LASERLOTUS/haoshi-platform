@@ -1,7 +1,7 @@
 """Offline acceptance tests. Fixtures are NOT production NGO facts or BGE outputs."""
 
 import unittest
-from datetime import date
+from datetime import date, timedelta
 from unittest.mock import patch
 
 from fastapi.testclient import TestClient
@@ -10,7 +10,7 @@ from pydantic import ValidationError
 from recommendation.demand import build_plan
 from recommendation.evidence import DataSourceError, build_snapshot
 from recommendation.schemas import Demand, Period
-from recommendation.scoring import SemanticUnavailableError
+from recommendation.scoring import SemanticUnavailableError, temporal_trust
 from recommendation.service import recommend
 
 AS_OF = date(2026, 11, 15)
@@ -93,16 +93,18 @@ class RecommendationTests(unittest.TestCase):
         self.assertEqual(result.score_range, (48.89, 93.33))
         self.assertEqual(result.subscores["time"].state, "Unknown")
         self.assertIsNone(result.subscores["time"].score)
-        self.assertEqual(result.scoring_status, "needs_verification")
+        self.assertEqual(result.scoring_status, "review_candidate")
+        self.assertTrue(result.verification_required)
+        self.assertTrue(any("低於 60%" in message for message in result.warnings))
 
     def test_no_need_overrides_high_semantic(self):
         semantic = FixedSemanticScorer(.99)
         result = score(snapshot("不需要行銷協助"), semantic=semantic)
         self.assertEqual(result.subscores["resource_need.marketing.semantic"].score, 0)
         self.assertEqual(result.subscores["resource_need.marketing.semantic"].method, "rule_override")
-        self.assertIsNone(result.subscores["resource_need.marketing.semantic"].raw_cosine)
+        self.assertEqual(result.subscores["resource_need.marketing.semantic"].raw_cosine, .99)
         self.assertEqual(result.scoring_status, "core_mismatch")
-        self.assertEqual(semantic.calls, [])
+        self.assertEqual(len(semantic.calls), 1)
 
     def test_conflicting_need_is_unknown_not_latest_wins(self):
         data = snapshot("需要行銷協助", extra_contacts=[["R02", "T01", "2026-11-10", "行銷", "不需要行銷協助"]])
@@ -162,11 +164,109 @@ class RecommendationTests(unittest.TestCase):
         self.assertTrue(data.warnings)
         self.assertEqual(score(data).evidence_coverage, 0)
 
-    def test_old_and_future_evidence_do_not_confirm_current_need(self):
-        for event_date in ("2023-01-01", "2027-01-01"):
-            with self.subTest(event_date=event_date):
-                result = score(snapshot(extra_contacts=[["R02", "T01", event_date, "行銷", "想學行銷"]]))
-                self.assertEqual(result.evidence_coverage, 0)
+    def test_future_evidence_is_not_used(self):
+        result = score(snapshot(extra_contacts=[["R02", "T01", "2027-01-01", "行銷", "想學行銷"]]))
+        self.assertEqual(result.evidence_coverage, 0)
+
+    def test_old_evidence_is_kept_but_ranking_trust_decreases(self):
+        recent = score(snapshot("想學行銷"))
+        old = score(snapshot(extra_contacts=[["R02", "T01", "2023-01-01", "行銷", "想學行銷"]]))
+        self.assertEqual(old.match_score, recent.match_score)
+        self.assertGreater(old.evidence_coverage, 0)
+        self.assertLess(old.evidence_trust, recent.evidence_trust)
+        self.assertLess(old.ranking_score, recent.ranking_score)
+        self.assertEqual(old.scoring_status, "historical_candidate")
+        self.assertTrue(old.verification_required)
+
+    def test_two_year_half_life_is_continuous_without_year_cutoff(self):
+        e = snapshot("想學行銷").organizations[0].evidence[-1]
+        e.event_date = AS_OF
+        self.assertEqual(temporal_trust(e, AS_OF), 1)
+        e.event_date = AS_OF - timedelta(days=730)
+        self.assertAlmostEqual(temporal_trust(e, AS_OF), .5)
+        e.event_date = AS_OF - timedelta(days=3650)
+        self.assertGreater(temporal_trust(e, AS_OF), 0)
+
+    def test_old_refusal_does_not_exclude_present_required_resource(self):
+        data = snapshot(extra_contacts=[["R02", "T01", "2020-01-01", "行銷", "不需要行銷協助"]])
+        result = score(data, demand(required_conditions=["resource_need"]))
+        self.assertEqual(result.subscores["resource_need.marketing.explicit"].score, 0)
+        self.assertEqual(result.eligibility_status, "Unverified")
+        self.assertEqual(result.scoring_status, "historical_candidate")
+
+    def test_undated_need_is_low_trust_and_not_a_confirmed_eligibility(self):
+        data = snapshot(extra_contacts=[["R02", "T01", "", "行銷", "想學行銷"]])
+        result = score(data, demand(required_conditions=["resource_need"]))
+        self.assertAlmostEqual(result.evidence_trust, .35)
+        self.assertEqual(result.eligibility_status, "Unverified")
+        self.assertTrue(result.source_evidence)
+
+    def test_semantic_reference_can_retrieve_without_resource_keyword(self):
+        semantic = FixedSemanticScorer(.8)
+        result = score(snapshot("期待讓更多人理解我們的故事"), semantic=semantic)
+        self.assertTrue(semantic.calls)
+        self.assertEqual(result.subscores["resource_need.marketing.semantic"].raw_cosine, .8)
+        self.assertEqual(result.subscores["resource_need.marketing.explicit"].state, "Unknown")
+        self.assertEqual(result.subscores["readiness"].state, "Unknown")
+        self.assertEqual(result.scoring_status, "semantic_candidate")
+        self.assertTrue(result.verification_required)
+
+    def test_semantic_reference_does_not_confirm_required_need(self):
+        result = score(snapshot("期待讓更多人理解我們的故事"), demand(required_conditions=["resource_need"]))
+        self.assertEqual(result.eligibility_status, "Unverified")
+
+    def test_all_unknown_unchanged_not_artificially_boosted(self):
+        result = score(snapshot())
+        self.assertEqual(result.match_score, 30)
+        self.assertEqual(result.ranking_score, 30)
+        self.assertEqual(result.evidence_coverage, 0)
+        self.assertEqual(result.evidence_trust, 0)
+
+    def test_all_history_searched_but_aggregation_is_bounded_and_deduplicated(self):
+        contacts = [[f"R{i:02}", "T01", "2026-11-01", "觀察", f"期待對外分享故事的方式{i}"] for i in range(10)]
+        semantic = FixedSemanticScorer(.8)
+        result = score(snapshot(extra_contacts=contacts), semantic=semantic)
+        self.assertEqual(len(semantic.calls), 10)
+        self.assertEqual(len(result.subscores["resource_need.marketing.semantic"].evidence_ids), 3)
+        a = score(snapshot("期待更多人看見我們"))
+        b = score(snapshot("期待更多人看見我們", extra_contacts=[["R02", "T01", "2026-11-01", "觀察", "期待更多人看見我們"]]))
+        self.assertEqual(a.ranking_score, b.ranking_score)
+
+    def test_relevant_older_fourth_record_is_not_lost_before_bge(self):
+        class MeaningScorer(FixedSemanticScorer):
+            def similarity(self, query, passage):
+                self.calls.append((query, passage))
+                return .95 if "品牌故事" in passage else .2
+        contacts = [[f"R{i}", "T01", "2026-11-10", "紀錄", f"組織一般行政近況{i}"] for i in range(4)]
+        contacts.append(["Rold", "T01", "2022-01-01", "紀錄", "期待讓更多人理解品牌故事"])
+        result = score(snapshot(extra_contacts=contacts), semantic=MeaningScorer())
+        semantic = result.subscores["resource_need.marketing.semantic"]
+        self.assertTrue(any("Rold" in eid for eid in semantic.evidence_ids))
+        self.assertAlmostEqual(semantic.raw_cosine, (.95 + .2 + .2) / 3)
+        self.assertEqual(result.subscores["resource_need.marketing.explicit"].state, "Unknown")
+
+    def test_keyword_hit_does_not_stop_searching_different_wording(self):
+        semantic = FixedSemanticScorer()
+        score(snapshot("想學行銷", extra_contacts=[["Rother", "T01", "2026-11-02", "紀錄", "期待讓更多人理解我們的品牌故事"]]), semantic=semantic)
+        self.assertTrue(any("品牌故事" in passage for _, passage in semantic.calls))
+
+    def test_old_participation_and_time_claims_do_not_exclude_current_plan(self):
+        request = demand(plan_name="行銷陪跑V1", period=Period(start=date(2027, 1, 1), end=date(2027, 6, 30)),
+                         required_conditions=["time", "participation"])
+        data = snapshot(extra_contacts=[["R02", "T01", "2020-01-01", "行銷陪跑V1",
+                                        "行銷陪跑V1期間2027-01-01至2027-06-30確認無法參加"]])
+        result = score(data, request)
+        self.assertEqual(result.eligibility_checks["time"].status, "Unverified")
+        self.assertEqual(result.eligibility_checks["participation"].status, "Unverified")
+        self.assertTrue(result.verification_required)
+
+    def test_summary_explains_new_candidate_types_and_separates_ranking(self):
+        from recommendation_cli import format_summary
+        response = recommend(demand(), snapshot("期待讓更多人理解我們的故事"), FixedSemanticScorer(), AS_OF)
+        summary = format_summary(response)
+        self.assertIn("契合分 | 排序分", summary)
+        self.assertIn("語意參考待確認", summary)
+        self.assertIn("不是正確率", summary)
 
     def test_required_unknown_is_retained(self):
         request = demand(plan_name="行銷陪跑V1", required_conditions=["participation"])

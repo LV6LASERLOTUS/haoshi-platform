@@ -1,6 +1,10 @@
 # CSR–NGO 推薦 V1：機制、規則與操作
 
-規則版本：`csr-v1.0.0`。這是可執行的後端初版，權重、365 天證據窗、Unknown=30、覆蓋率 60% 都是待驗證政策，不是經驗證的成功率模型。
+規則版本：`csr-v1.2.0`。歷史資料不再有年份上限，改用連續時間衰減；BGE 先搜尋所有可用歷史片段，規則再確認需求與否定。權重、730 天半衰期、Unknown=30、覆蓋提醒與時間信任門檻仍是待驗證政策，不是經驗證的成功率模型。
+
+本版變更：取消一年硬切；加入時間信任、時間調整排序分與語意參考候選；覆蓋率 60% 改為提醒，不能單獨擋掉候選。未知意願與必要條件仍不會被當成符合。
+
+1.2 搜尋修正：三段上限改到 BGE 全歷史搜尋之後，不再先按日期挑三段。即使已命中關鍵字，仍搜尋其他說法；否定與衝突規則檢查全部歷史，不只檢查前三段。
 
 ## 1. 範圍與入口
 
@@ -82,8 +86,10 @@ flowchart TD
 - 依句號、逗號、分號、換行及「但／但是／不過」切分；否定詞保留在原片段。
 - 相同 NGO、日期與正規化片段只計一次；不同來源原文仍需人工確認矛盾是否已解決。
 - 顧問筆記無紀錄 ID，使用組織、日期、記錄者及原文雜湊識別；變更原文會產生新識別。
-- 歷史需有有效日期，且在執行日之前 365 天內。日期缺漏、未來或過期的紀錄不自動確認當前需求。
-- 365 天是可調政策，尚非實證門檻；原文保留在來源表，這不是宣稱歷史需求已不存在。
+- 歷史不設年份上限；舊紀錄仍可作需求、改善行動及語意參考。未來事件日期仍不使用，需要修正。
+- 日期缺漏的歷史保留，以 0.35 時間信任作參考，不能直接確認必要條件。
+- 有日期時使用 `時間信任 = 2 ** (-資料天數 / 730)`。當日 1、一年約 0.707、兩年 0.5、四年 0.25，沒有跨年突然歸零；730 天是暫定政策。
+- 這是時效權重，不是陳述正確機率，也不代表組織品質。主檔不做歷史折扣（1），不等於主檔已確認為最新資料。
 - 明確正負需求同時存在：Unknown，人工確認，不直接採最新一筆。
 - 不同意桑基圖上架不等於拒絕其他合作；有行銷部門不等於不需行銷資源；其他計畫不等於本次沒時間。
 
@@ -117,24 +123,28 @@ flowchart TD
 | 70 | 原文有需求語句，命中相鄰資源詞；顧問／審查等觀察最高暫設 70 |
 | 40 | 原文有需求語句與弱線索，或為「可能、建議、可以考慮」等不確定需求 |
 | 0 | 對直接資源明確說不需要／無需／沒有需求；不確定否定不作 0 |
-| Unknown | 沒證據、僅角色名稱／服務介紹、否定學習意願但未確認需求、過時、矛盾等 |
+| Unknown | 沒有明確需求證據、僅角色名稱／服務介紹、否定學習意願但未確認需求、矛盾等；不因年份久直接 Unknown |
 
 此版為保守詞表規則，會有未涵蓋說法；未命中不代表無需求。不能把它稱為完整中文意圖／否定理解模型。
 
 資源構面 `R = 0.6 × B + 0.4 × E`。
 
-- 先依證據明確程度、日期、穩定 ID 選出一個代表片段，再計算 BGE；不從長短不同的歷史取最高 cosine。
+- 先對全部可用且有內容的歷史片段計算 BGE，不要求命中資源詞；相同正規化文字跨日期只比對一次，採較新的來源。未來日期、空白、純出席或沒有內容的片段不進搜尋。
+- BGE 完成檢索後，再對全部歷史執行明確需求、否定與衝突規則。有明確需求時，以「明確程度 × 時間信任」選擇規則分的支持證據；不會因此停止其他原文的 BGE 搜尋。
 - 查詢由資源詞表產生，僅查詢加 BGE 指令；不混 ESG 用途、組織人數或名額。
 - 同時保留 `raw_cosine ∈ [-1,1]`；暫定 `B=100×max(0,cosine)`，標示 `uncalibrated`。
-- 無有效需求片段就 Unknown；不以簡介猜測缺少的培力需求。
-- 明確沒有該資源需求：整個 R=0，不執行 BGE 來抵銷拒絕；語意權重位置的 0 明確標記 `method=rule_override`、`raw_cosine=null`，不能當成模型實測分數。
+- 不以組織簡介猜培力需求。否定欲望等片段可被檢索，但經規則檢查後不作正向語意分數的支持。
+- 搜尋後按 cosine 選出最多 3 段不同文字，取原始 cosine 的平均，而非只取最大值；原文與來源 ID 都會保留。時間信任採這些支持片段的平均；`evidence_age_days` 在日期皆可用時為平均天數。
+- 沒有明確需求證據時，明確需求分仍 Unknown，狀態為 `semantic_candidate`，不能解讀為已確認有需求／意願。
+- 固定聚合上限、去重與平均可限制文字量偏誤，但搜尋較多片段仍有多次比較偏誤；不能宣稱完全公平。低語意分只代表可查閱的參考，不保證相關。
+- 明確沒有該資源需求：整個 R=0。檢索得到的否定片段 cosine 保留作診斷，語意權重位置的 0 標記 `method=rule_override`，不能讓高 cosine 抵銷拒絕。多筆否定時 raw_cosine 是其中最高值，僅用於診斷。
 - 正負衝突：整個 R Unknown；沒有隱藏地以 0 或符合補值。
 - `any`：取保守資源指數最高的資源類別；`all`：各資源等權平均，再展開 60/40。
 - BGE／E 部分未知仍保留原葉節點權重，不放大另一項權重。
 - 同需求加入無關 NGO 不會改變原 NGO 的分數。未使用候選批次 min-max。
 - 相同文字向量使用有界記憶體快取；OCR 不因純文字推薦而載入。首次 BGE 需要本機模型或下載。
 
-後續以人工評估樣本建立固定需求類型錨點或單調分段轉換；本版沒有宣稱 cosine 已跨需求校準。單一代表片段也有召回限制，後續需以人工樣本驗證是否改成固定證據集合。
+後續以人工評估樣本建立固定需求類型錨點或單調分段轉換；本版沒有宣稱 cosine 已跨需求校準。代表片段與固定參考集合仍有召回限制，需用人工樣本驗證。
 
 ## 8. 準備度、參與與時間
 
@@ -165,6 +175,19 @@ score_range = [A, A + 100 × u]
 
 Unknown=30 等價於原提案「50 填補再扣 20」，是保守政策，不是推測 NGO 實際有 30 分。`score_range` 為缺失補齊的數值範圍，不是信賴區間。覆蓋率只代表已評分需求權重，不代表正確率。
 
+時間信任與契合分開呈現。對每個 Known 葉節點，令 `t_l` 為支持證據的時間信任（BGE 多片段平均採支持片段平均；其他同一主張的多個支持來源取最大值，不依筆數累加）：
+
+```text
+trusted_evidence_coverage = Σ(p_l × k_l × t_l)
+evidence_trust = trusted_evidence_coverage / coverage  # 無證據時 0
+ranking_score = Σ(p_l × k_l × t_l × known_score_l)
+              + 30 × (1 - trusted_evidence_coverage)
+```
+
+`match_score` 保留內容契合度；`ranking_score` 將較舊已知資訊逐漸拉回「目前未知」的保守基準，用於組內排序。資料越久不代表內容越不相關，但對現在排序的支持力較小。Unknown 仍為 null，不把缺失調成高分。`score_range` 描述內容分數的缺失範圍，不涵蓋時間信任的不確定性，也不是 ranking_score 的上下界。
+
+例：兩筆相同內容相隔兩年，其 cosine、需求分、match_score 相同；較舊的一筆時間信任與 ranking_score 較低。全部無證據時 match_score/ranking_score 仍為 30、覆蓋與信任為 0，不假造推薦。
+
 正常案例：資源 B=80、E=100→R=88；準備度與時間 100，未要求規模→93.33，覆蓋率 100%。
 
 缺漏案例：相同 R=88，準備度／時間 Unknown→62.22，覆蓋率 55.56%，已知分 88、範圍 48.89–93.33。這些只作驗收測試輸入，不寫入真實 NGO。
@@ -174,14 +197,18 @@ Unknown=30 等價於原提案「50 填補再扣 20」，是保守政策，不是
 - 必要條件需有明確對應需求；`semantic/readiness` 是排序特徵，不能直接當必要條件，改用具體 `participation/resource_need` 等。
 - `Eligible`：確認符合；`Ineligible`：確認不符；`Unverified`：不足或矛盾。
 - 任一必要條件 Ineligible 才排除；Unknown 保留在候選。
-- 必要資源需明確需求 E=100；相鄰／弱線索仍 Unverified。`any` 至少一類確認，`all` 各類確認；明確無需求依 any/all 規則判斷。
+- 必要資源需明確需求 E=100，且該主張時間信任至少 0.60；相鄰／弱線索／低信任歷史仍 Unverified。`any` 至少一類確認，`all` 各類確認。
+- 時間信任低於 0.60 的舊拒絕、舊無需求、舊時間承諾，不直接造成 Eligible 或 Ineligible，保留為 Unverified。這是現在資格確認的暫定門檻，不是資料年份過濾。
 - 必要議題／對象的主檔未命中保持 Unverified，因為主檔不是完整服務清單。
 - 沒有必要條件時資格 Eligible 表示「無必要條件被違反」，不表示所有意願已確認。
 
-候選依狀態分組後排序：`review_candidate` → `needs_verification` → `core_mismatch` → `insufficient_evidence`；組內總分降序、覆蓋率降序、ID 穩定排序。不以人數或接觸次數破同分。
+候選依組別排序：`review_candidate` →（`historical_candidate`／`semantic_candidate`／`needs_verification` 同組）→ `core_mismatch` → `insufficient_evidence`；組內使用時間調整後 ranking_score 降序、覆蓋率降序、ID 穩定排序。不以人數或接觸次數破同分。
 
-- `review_candidate`：覆蓋率至少 60%、核心葉節點皆 Known、無必要條件未確認；只代表可供評估，不自動認定合適。
-- `needs_verification`：覆蓋不足、核心 Unknown 或必要條件 Unverified。
+- `review_candidate`：核心葉節點皆 Known、核心時間信任足夠、無必要條件未確認；只代表可供評估，不自動認定合適。覆蓋低於 60% 不單獨改成另一組。
+- `historical_candidate`：核心有歷史依據，但時間信任不足；保留候選，需確認現在情況，包含舊的無需求紀錄。
+- `semantic_candidate`：BGE 有原始片段比對，但明確需求尚未確認；不當作 NGO 已需要資源。
+- `needs_verification`：核心仍無法判斷或必要條件 Unverified。
+- `verification_required`：有 Unknown、必要條件待確認、覆蓋低於 60% 或整體時間信任低於 0.60 時為 true。覆蓋 60% 是提醒，不代表合作成功率，也不會單獨排除候選。
 - `core_mismatch`：核心已知且皆為 0，但不是必要條件時仍保留。
 - `insufficient_evidence`：覆蓋 0%，填補指數 30，保留待補證據，不認定有實際契合。
 - `ineligible`：另列 `excluded` 與原因。
@@ -190,7 +217,7 @@ Unknown=30 等價於原提案「50 填補再扣 20」，是保守政策，不是
 
 ## 11. 回應與追溯
 
-每家包含：`npo_id/npo_name`、`match_score`、`known_score`、`score_range`、`subscores`、`evidence_coverage`、`scoring_status`、`eligibility_status/eligibility_checks`、`weights_used`、`recommendation_reasons`、`source_evidence`、`warnings`、`missing_information`、規則版本、校準狀態與快照時間。
+每家包含：`npo_id/npo_name`、`match_score`、`ranking_score`、`known_score`、`score_range`、`subscores`、`evidence_coverage`、`evidence_trust`、`trusted_evidence_coverage`、`verification_required`、`scoring_status`、`eligibility_status/eligibility_checks`、`weights_used`、`recommendation_reasons`、`source_evidence`、`warnings`、`missing_information`、規則版本、校準狀態與快照時間。各 Known 細項包含支持來源的 `evidence_trust/evidence_age_days`。
 
 `weights_used` 是展開後的葉節點權重；`subscores` 逐項標記狀態、原文 ID、理由、分數與實際 cosine。理由採規則模板，不由模型編造事實。所有評分／資格引用的 ID 都應能在 `source_evidence` 找到原文。
 
@@ -207,6 +234,9 @@ python recommendation_cli.py examples/marketing_demand.json --plan-only
 
 # 用憑證讀取真實資料，再使用實際 BGE；首次可能下載模型
 python recommendation_cli.py examples/marketing_demand.json
+
+# 易讀摘要：契合分、時間調整排序分、覆蓋率、時間信任及候選類別
+python recommendation_cli.py examples/marketing_demand.json --summary
 
 # 啟動 API，於 /docs 使用新 recommendations 端點
 python -m uvicorn main:app --host 127.0.0.1 --port 8000

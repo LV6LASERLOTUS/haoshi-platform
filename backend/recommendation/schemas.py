@@ -107,6 +107,8 @@ class Subscore(Contract):
     evidence_ids: list[str] = Field(default_factory=list)
     raw_cosine: float | None = Field(default=None, ge=-1, le=1)
     method: Literal["rule", "bge", "rule_override"] = "rule"
+    evidence_trust: float | None = Field(default=None, ge=0, le=1)
+    evidence_age_days: int | None = Field(default=None, ge=0)
 
     @model_validator(mode="after")
     def check_state(self):
@@ -129,7 +131,11 @@ class Recommendation(Contract):
     score_range: tuple[float, float]
     subscores: dict[str, Subscore]
     evidence_coverage: float
-    scoring_status: Literal["review_candidate", "needs_verification", "insufficient_evidence", "core_mismatch", "ineligible"]
+    evidence_trust: float = Field(default=0, ge=0, le=1)
+    trusted_evidence_coverage: float = Field(default=0, ge=0, le=1)
+    ranking_score: float = Field(default=0, ge=0, le=100)
+    verification_required: bool = True
+    scoring_status: Literal["review_candidate", "historical_candidate", "semantic_candidate", "needs_verification", "insufficient_evidence", "core_mismatch", "ineligible"]
     eligibility_status: Literal["Eligible", "Ineligible", "Unverified"]
     eligibility_checks: dict[str, EligibilityCheck]
     weights_used: dict[str, float]

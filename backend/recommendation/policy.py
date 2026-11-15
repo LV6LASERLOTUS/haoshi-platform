@@ -1,9 +1,15 @@
 """Versioned V1 policy assumptions, not empirically calibrated parameters."""
 
-VERSION = "csr-v1.0.0"
+VERSION = "csr-v1.2.0"
 UNKNOWN_BASELINE = 30.0
 COVERAGE_THRESHOLD = 0.60
-EVIDENCE_MAX_AGE_DAYS = 365
+# No maximum age: a two-year half-life is a transparent policy assumption, not
+# a calibrated probability. Old evidence stays searchable and attributable.
+EVIDENCE_HALF_LIFE_DAYS = 730
+UNDATED_EVIDENCE_TRUST = 0.35
+CONFIRMATION_TRUST_THRESHOLD = 0.60
+# Aggregate at most three distinct passages AFTER semantic search, not before it.
+SEMANTIC_REFERENCE_LIMIT = 3
 
 # direct / adjacent / weak describe resource needs, never organizational quality.
 RESOURCES = {

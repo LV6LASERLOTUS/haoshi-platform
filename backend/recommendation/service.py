@@ -37,10 +37,11 @@ def recommend(demand: Demand, snapshot: Snapshot, scorer: SemanticScorer | None 
     as_of = as_of or datetime.now(timezone(timedelta(hours=8))).date()
     results = [score_organization(org, demand, plan, scorer, as_of, snapshot.captured_at)
                for org in snapshot.organizations]
-    groups = {"review_candidate": 0, "needs_verification": 1, "core_mismatch": 2, "insufficient_evidence": 3}
+    groups = {"review_candidate": 0, "historical_candidate": 1, "semantic_candidate": 1,
+              "needs_verification": 1, "core_mismatch": 2, "insufficient_evidence": 3}
     candidates = [result for result in results if result.eligibility_status != "Ineligible"]
     excluded = [result for result in results if result.eligibility_status == "Ineligible"]
-    candidates.sort(key=lambda r: (groups[r.scoring_status], -r.match_score, -r.evidence_coverage, r.npo_id))
+    candidates.sort(key=lambda r: (groups[r.scoring_status], -r.ranking_score, -r.evidence_coverage, r.npo_id))
     excluded.sort(key=lambda r: r.npo_id)
     warnings = list(plan.warnings) + snapshot.warnings
     if len(candidates) < plan.candidate_limit:

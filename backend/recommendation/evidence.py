@@ -95,7 +95,7 @@ def build_snapshot(tables: dict[str, list[list[str]]], sheet_ids: dict[str, int]
                 continue
             event_date = parse_date(record["日期"])
             if event_date is None:
-                warnings.append(f"{sheet} 第 {row} 列日期無法解析，保留來源但不自動作歷史評分。")
+                warnings.append(f"{sheet} 第 {row} 列日期無法解析，保留為低信任度參考，不能確認必要條件。")
             record_id = record.get("紀錄編號") or "note-" + hashlib.sha256(
                 f"{npo_id}|{record['日期']}|{record.get('記錄者', '')}|{text}".encode()
             ).hexdigest()[:20]
