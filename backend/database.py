@@ -8,7 +8,7 @@ CREDENTIALS_PATH: Path = Path(__file__).parent / "config" / "credentials.json"
 
 # TODO: 待建立實際的回饋 Google 試算表／工作表後，替換以下網址或工作表名稱
 FEEDBACK_SHEET_URL: str = "https://docs.google.com/spreadsheets/d/1Ehx7HHmbmxGbMeuw0WK76jdjGs3_3gsFerduEv5b5aI/edit?gid=2132473483#gid=2132473483"
-FEEDBACK_WORKSHEET_NAME: str = "feedback_mock"
+FEEDBACK_WORKSHEET_NAME: str = "NPO_feedback"
 
 
 def load_npos_from_sheet() -> dict[str, Worksheet]:
@@ -116,7 +116,10 @@ def query_ngo(ngo_name: str) -> dict:
     return data
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
+    records = load_npos_from_sheet()
+    for record in records:
+        print(record)
 #     target_ngo = "共好行動組織01"
 #     result = query_ngo(target_ngo)
 
