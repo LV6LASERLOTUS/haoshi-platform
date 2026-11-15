@@ -1,5 +1,7 @@
 // 回饋修正 API：FeedbackSheet 送出時呼叫
 // payload 形狀：{ question_id, question_text, ai_summary, rating, feedback_type, feedback_content }
+import Constants from 'expo-constants';
+import { Platform } from 'react-native';
 
 // 丟出錯誤時，FeedbackSheet 會顯示「送出失敗，請稍後再試一次」。
 function getDefaultApiBase() {
